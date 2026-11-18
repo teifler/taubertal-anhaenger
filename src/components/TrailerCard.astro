@@ -1,0 +1,164 @@
+---
+import type { Trailer } from '../data';
+import { formatEuro } from '../lib/format';
+import { whatsappUrl } from '../lib/links';
+import { DEPOSIT_LABEL, ON_REQUEST, PRICE_PERIODS } from '../lib/pricing';
+import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+import PhotoGallery from './PhotoGallery.astro';
+
+interface Props {
+  trailer: Trailer;
+}
+
+const { trailer } = Astro.props;
+
+const priceRows = [
+  ...PRICE_PERIODS.map(({ key, label }) => ({ label, value: trailer.prices[key] })),
+  { label: DEPOSIT_LABEL, value: trailer.deposit },
+];
+---
+
+<article class="trailer-card card" id={trailer.id}>
+  <PhotoGallery images={trailer.images} label={`Fotos ${trailer.shortName}`} isIllustration={trailer.isIllustration} />
+
+  <div class="trailer-card__body">
+    <div class="trailer-card__info">
+      <div class="trailer-card__heading">
+        <h3>{trailer.name} mieten</h3>
+        <p class="trailer-card__from">
+          <b>{formatEuro(trailer.prices.day)}</b>pro Tag
+        </p>
+      </div>
+      <p class="trailer-card__tagline">{trailer.tagline}</p>
+      <p class="trailer-card__description">{trailer.description}</p>
+      <div>
+        <p class="trailer-card__box-title">Technische Daten</p>
+        <dl class="data-list">
+          {trailer.specs.map((spec) => (
+            <div>
+              <dt>{spec.label}</dt>
+              {spec.value ? <dd>{spec.value}</dd> : <dd class="is-unknown">{ON_REQUEST}</dd>}
+            </div>
+          ))}
+        </dl>
+      </div>
+    </div>
+
+    <div class="trailer-card__booking">
+      <div>
+        <p class="trailer-card__box-title">Mietpreise</p>
+        <dl class="data-list price-list">
+          {priceRows.map((row) => (
+            <div>
+              <dt>{row.label}</dt>
+              {row.value === null ? <dd class="is-unknown">{ON_REQUEST}</dd> : <dd>{formatEuro(row.value)}</dd>}
+            </div>
+          ))}
+        </dl>
+      </div>
+      <p class="trailer-card__note">{trailer.note}</p>
+      <a class="btn btn--primary" href={whatsappUrl(trailer.inquiryObject)}>
+        <WhatsAppIcon />
+        {trailer.ctaLabel}
+      </a>
+    </div>
+  </div>
+</article>
+
+<style>
+  .trailer-card {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+  }
+
+  .trailer-card__body {
+    display: flex;
+    flex: 1;
+    flex-direction: column;
+    gap: 18px;
+    padding: 20px;
+  }
+
+  .trailer-card__info,
+  .trailer-card__booking {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .trailer-card__info {
+    flex: 1;
+  }
+
+  .trailer-card__heading {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 6px 16px;
+  }
+
+  .trailer-card__from {
+    color: var(--color-muted);
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  .trailer-card__from b {
+    margin-right: 3px;
+    color: var(--color-brand);
+    font-size: 1.5rem;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+  }
+
+  .trailer-card__tagline {
+    margin-top: -10px;
+    color: var(--color-muted);
+    font-size: 0.97rem;
+  }
+
+  .trailer-card__description {
+    font-size: 0.98rem;
+  }
+
+  .trailer-card__box-title {
+    margin-bottom: 8px;
+    color: var(--color-muted);
+    font-size: 0.8rem;
+    font-weight: 600;
+  }
+
+  /* The daily rate is the number people compare, so it gets the highlight. */
+  .price-list > div:first-child {
+    background: var(--color-tint);
+  }
+
+  .price-list > div:first-child dt,
+  .price-list > div:first-child dd {
+    color: var(--color-brand-dark);
+  }
+
+  .price-list > div:first-child dd {
+    font-size: 1.06rem;
+    font-weight: 700;
+  }
+
+  .trailer-card__note {
+    min-height: 1.4em;
+    color: var(--color-muted);
+    font-size: 0.88rem;
+  }
+
+  .btn {
+    width: 100%;
+    margin-top: auto;
+  }
+
+  @media (min-width: 900px) {
+    .trailer-card__body {
+      padding: 24px;
+    }
+  }
+</style>

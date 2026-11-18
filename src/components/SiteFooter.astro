@@ -1,0 +1,62 @@
+---
+import { site, trailers } from '../data';
+
+const { street, postalCode, city } = site.address;
+---
+
+<footer class="site-footer">
+  <div class="container site-footer__inner">
+    <nav class="site-footer__trailers" aria-label="Anhänger mieten">
+      {trailers.map((trailer) => (
+        <a href={`/#${trailer.id}`}>{trailer.name} mieten</a>
+      ))}
+    </nav>
+    <span>{`${site.company}, Anhängerverleih und Anhängervermietung, ${street}, ${postalCode} ${city}, Telefon ${site.phone.display}`}</span>
+    <span class="site-footer__legal">
+      <a href="/impressum/">Impressum</a>
+      <a href="/datenschutz/">Datenschutz</a>
+    </span>
+  </div>
+</footer>
+
+<style>
+  .site-footer {
+    padding: 26px 0 calc(112px + env(safe-area-inset-bottom));
+    background: #fff;
+    border-top: 1px solid var(--color-line);
+    color: var(--color-muted);
+    font-size: 0.9rem;
+  }
+
+  .site-footer__inner {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+  }
+
+  .site-footer__trailers {
+    display: flex;
+    flex: 1 1 100%;
+    flex-wrap: wrap;
+    gap: 6px 22px;
+    margin-bottom: 6px;
+  }
+
+  .site-footer__trailers a {
+    color: var(--color-ink);
+    font-weight: 600;
+    text-underline-offset: 3px;
+  }
+
+  .site-footer__legal a + a {
+    margin-left: 18px;
+  }
+
+  /* The fixed contact bar is hidden from 760px, so the extra bottom space is no longer needed. */
+  @media (min-width: 760px) {
+    .site-footer {
+      padding-bottom: 36px;
+    }
+  }
+</style>

@@ -1,0 +1,59 @@
+---
+import { reviews, site } from '../data';
+import { formatRating } from '../lib/format';
+
+const topQuote = reviews.find((review) => review.showInTopBar);
+---
+
+<aside class="rating-bar" aria-label="Bewertung bei Google">
+  <a href="/#stimmen">
+    <span class="stars" aria-hidden="true">
+      ★★★★★
+    </span>
+    <span>
+      <b>{formatRating(site.rating.value)} von 5</b> bei Google, {site.rating.count} Rezensionen
+    </span>
+    {topQuote && <span class="rating-bar__quote">„{topQuote.quote}“</span>}
+    <span class="rating-bar__more">Bewertungen lesen</span>
+  </a>
+</aside>
+
+<style>
+  .rating-bar {
+    background: var(--color-tint);
+    border-bottom: 1px solid var(--color-tint-line);
+    font-size: 0.93rem;
+  }
+
+  a {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 4px 12px;
+    min-height: 44px;
+    padding: 8px 16px;
+    text-align: center;
+    text-decoration: none;
+  }
+
+  b {
+    font-weight: 700;
+  }
+
+  .rating-bar__quote {
+    opacity: 0.9;
+  }
+
+  .rating-bar__more {
+    font-weight: 600;
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  @media (max-width: 760px) {
+    .rating-bar__quote {
+      display: none;
+    }
+  }
+</style>

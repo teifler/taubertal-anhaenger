@@ -1,0 +1,42 @@
+---
+import { getImage } from 'astro:assets';
+
+import Contact from '../components/Contact.astro';
+import Faq from '../components/Faq.astro';
+import Hero from '../components/Hero.astro';
+import PriceTable from '../components/PriceTable.astro';
+import RentalSteps from '../components/RentalSteps.astro';
+import Reviews from '../components/Reviews.astro';
+import TrailerList from '../components/TrailerList.astro';
+import UseCases from '../components/UseCases.astro';
+import { site, trailers } from '../data';
+import BaseLayout from '../layouts/BaseLayout.astro';
+import { imageByFile } from '../lib/images';
+import { requireSite } from '../lib/site-url';
+import { buildStructuredData } from '../lib/structured-data';
+
+const siteUrl = requireSite(Astro.site);
+
+// First image per trailer as an absolute URL, for the structured data.
+const imageUrls: Record<string, string> = {};
+for (const trailer of trailers) {
+  const image = await getImage({ src: imageByFile(trailer.images[0].file), width: 800, quality: 72 });
+  imageUrls[trailer.id] = new URL(image.src, siteUrl).href;
+}
+---
+
+<BaseLayout
+  title={site.seo.title}
+  description={site.seo.description}
+  structuredData={buildStructuredData(siteUrl, imageUrls)}
+  isHome
+>
+  <Hero />
+  <TrailerList />
+  <UseCases />
+  <PriceTable />
+  <RentalSteps />
+  <Reviews />
+  <Faq />
+  <Contact />
+</BaseLayout>

@@ -1,0 +1,194 @@
+---
+import { site, trailers } from '../data';
+import { formatEuro } from '../lib/format';
+import { DEPOSIT_LABEL, hasLongTermPrices, ON_REQUEST, PRICE_PERIODS } from '../lib/pricing';
+
+const rows = [...trailers].sort((a, b) => a.prices.day - b.prices.day);
+const tableNote = [
+  ...trailers.filter((t) => t.note).map((t) => `${t.shortName}: ${t.note}`),
+  `Stand der Preise: ${site.pricesAsOf}.`,
+].join(' ');
+const longTermColumns = PRICE_PERIODS.length - 1;
+---
+
+<section class="section" id="preise">
+  <div class="container">
+    <div class="section-header">
+      <h2>Mietpreise für alle Anhänger</h2>
+    </div>
+    <div class="table-scroll card" tabindex="0" role="region" aria-label="Preistabelle">
+      <table>
+        <caption class="visually-hidden">Mietpreise der Anhänger in Tauberbischofsheim nach Mietdauer</caption>
+        <thead>
+          <tr>
+            <th scope="col">Anhänger</th>
+            {PRICE_PERIODS.map((period) => (
+              <th scope="col">{period.label}</th>
+            ))}
+            <th scope="col">{DEPOSIT_LABEL}</th>
+          </tr>
+        </thead>
+        <tbody>
+          {rows.map((trailer) => (
+            <tr>
+              <th scope="row">
+                <a href={`#${trailer.id}`}>{trailer.name}</a>
+              </th>
+              {hasLongTermPrices(trailer) ? (
+                PRICE_PERIODS.map(({ key, shortLabel }) => {
+                  const price = trailer.prices[key];
+                  return price === null ? (
+                    <td class="is-unknown" data-label={shortLabel}>
+                      {ON_REQUEST}
+                    </td>
+                  ) : (
+                    <td data-label={shortLabel}>{formatEuro(price)}</td>
+                  );
+                })
+              ) : (
+                <>
+                  <td data-label={PRICE_PERIODS[0].shortLabel}>{formatEuro(trailer.prices.day)}</td>
+                  <td class="is-unknown is-merged" colspan={longTermColumns}>
+                    längere Miete auf Anfrage
+                  </td>
+                </>
+              )}
+              <td data-label={DEPOSIT_LABEL}>{formatEuro(trailer.deposit)}</td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+    <p class="table-note">{tableNote}</p>
+  </div>
+</section>
+
+<style>
+  .table-scroll {
+    overflow-x: auto;
+  }
+
+  table {
+    width: 100%;
+    min-width: 660px;
+    border-collapse: collapse;
+    font-variant-numeric: tabular-nums;
+  }
+
+  th,
+  td {
+    padding: 14px 18px;
+    border-bottom: 1px solid var(--color-line);
+    text-align: right;
+    white-space: nowrap;
+  }
+
+  th:first-child,
+  td:first-child {
+    text-align: left;
+    white-space: normal;
+  }
+
+  thead th {
+    background: var(--color-zebra);
+    color: var(--color-muted);
+    font-size: 0.86rem;
+    font-weight: 600;
+  }
+
+  tbody th {
+    font-weight: 700;
+  }
+
+  tbody td {
+    font-weight: 600;
+  }
+
+  tbody td:nth-child(2) {
+    color: var(--color-brand-dark);
+  }
+
+  tbody tr:nth-child(even) {
+    background: var(--color-zebra);
+  }
+
+  tbody tr:last-child > * {
+    border-bottom: 0;
+  }
+
+  tbody th a {
+    text-decoration-thickness: 1px;
+    text-underline-offset: 3px;
+  }
+
+  /* Scoped selectors get an attribute per compound, so match the specificity of "tbody td". */
+  tbody td.is-unknown {
+    color: var(--color-muted);
+    font-weight: 400;
+    font-size: 0.93rem;
+  }
+
+  .table-note {
+    max-width: 46em;
+    margin-top: 14px;
+    color: var(--color-muted);
+    font-size: 0.93rem;
+  }
+
+  /* Phones: each row becomes a small card, column headers move into the cells via data-label. */
+  @media (max-width: 680px) {
+    table {
+      min-width: 0;
+    }
+
+    thead {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      overflow: hidden;
+      clip-path: inset(50%);
+    }
+
+    tbody tr {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 0 4px;
+      padding: 13px 14px;
+      border-bottom: 1px solid var(--color-line);
+    }
+
+    tbody tr:last-child {
+      border-bottom: 0;
+    }
+
+    tbody th,
+    tbody td {
+      padding: 0;
+      border: 0;
+      text-align: left;
+      white-space: normal;
+    }
+
+    tbody th {
+      grid-column: 1 / -1;
+      margin-bottom: 6px;
+    }
+
+    tbody td::before {
+      content: attr(data-label);
+      display: block;
+      color: var(--color-muted);
+      font: 500 0.72rem/1.4 var(--font);
+    }
+
+    tbody td.is-merged {
+      grid-column: span 3;
+      align-self: end;
+      font-size: 0.85rem;
+    }
+
+    tbody td.is-merged::before {
+      display: none;
+    }
+  }
+</style>

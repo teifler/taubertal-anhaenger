@@ -1,0 +1,40 @@
+---
+import { useCases } from '../data';
+---
+
+<section class="section use-cases" id="welcher-anhaenger">
+  <div class="container">
+    <div class="section-header">
+      <h2>Welcher Anhänger wofür</h2>
+      <p>
+        Der Planenanhänger ist der einzige mit Dach. Was Ihr Auto ziehen darf, steht im Fahrzeugschein unter O.1 und
+        O.2.
+      </p>
+    </div>
+    <dl class="data-list use-cases__list">
+      {useCases.map((useCase) => (
+        <div>
+          <dt>{useCase.task}</dt>
+          <dd>
+            <a href={`#${useCase.trailer.id}`}>{useCase.trailer.name}</a>
+          </dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .use-cases {
+    padding-bottom: 0;
+  }
+
+  .use-cases__list {
+    max-width: 760px;
+  }
+
+  a {
+    color: var(--color-brand-dark);
+    text-underline-offset: 3px;
+  }
+</style>

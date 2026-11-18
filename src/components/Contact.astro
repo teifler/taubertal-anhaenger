@@ -1,0 +1,94 @@
+---
+import { site } from '../data';
+import { mapsRouteUrl, telUrl, whatsappUrl } from '../lib/links';
+import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+
+const { street, postalCode, city } = site.address;
+---
+
+<section class="section" id="kontakt">
+  <div class="container">
+    <div class="section-header">
+      <h2>Kontakt und Anfahrt</h2>
+    </div>
+    <div class="contact">
+      <div class="contact__box card">
+        <address>
+          <b>{site.company}</b>
+          {street}
+          <br />
+          {`${postalCode} ${city}`}
+        </address>
+        <p>
+          Telefon und WhatsApp: <a href={telUrl}>{site.phone.display}</a>
+        </p>
+        <div class="button-row">
+          <a class="btn btn--primary" href={whatsappUrl()}>
+            <WhatsAppIcon />
+            WhatsApp schreiben
+          </a>
+          <a class="btn btn--secondary" href={mapsRouteUrl}>
+            Route planen
+          </a>
+        </div>
+      </div>
+      <div class="contact__info">
+        <h3>Anhängerverleih für Tauberbischofsheim und das Taubertal</h3>
+        <p>{site.copy.pickup}</p>
+        <p class="contact__travel">{site.copy.travelTimes}</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .contact {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  .contact__box {
+    padding: 24px;
+  }
+
+  address {
+    margin-bottom: 14px;
+    font-size: 1.1rem;
+    font-style: normal;
+    line-height: 1.5;
+  }
+
+  address b {
+    display: block;
+    margin-bottom: 4px;
+    font-weight: 800;
+    font-size: 1.25rem;
+  }
+
+  .button-row {
+    margin-top: 18px;
+  }
+
+  .contact__info {
+    display: grid;
+    align-content: start;
+    gap: 14px;
+  }
+
+  .contact__info h3 {
+    margin-bottom: -4px;
+    font-size: 1.15rem;
+  }
+
+  .contact__travel {
+    color: var(--color-muted);
+  }
+
+  @media (min-width: 900px) {
+    .contact {
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+    }
+  }
+</style>

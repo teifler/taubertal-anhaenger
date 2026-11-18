@@ -1,0 +1,309 @@
+---
+import { Image } from 'astro:assets';
+
+import { reviews, site, trailers } from '../data';
+import { formatEuro } from '../lib/format';
+import { imageByFile } from '../lib/images';
+import { telUrl, whatsappUrl } from '../lib/links';
+import CheckIcon from './icons/CheckIcon.astro';
+import WhatsAppIcon from './icons/WhatsAppIcon.astro';
+import RatingSummary from './RatingSummary.astro';
+
+const { street, postalCode, city } = site.address;
+const photoTiles = trailers.filter((trailer) => !trailer.isIllustration).slice(0, 3);
+const heroReviews = reviews.filter((review) => review.showInHero).slice(0, 3);
+
+/** Soft hyphen so long German compounds break cleanly on narrow tiles ("Tandem-anhänger"). */
+const hyphenate = (word: string) => word.replace(/(transporter|anhänger)/, '­$1');
+---
+
+<section class="hero" id="start">
+  <div class="container hero__grid">
+    <div class="hero__text">
+      <p class="hero__kicker">{`Anhängerverleih in der ${street}, ${postalCode} ${city}`}</p>
+      <h1>Anhänger mieten in Tauberbischofsheim</h1>
+      <p class="hero__lead">{site.copy.lead}</p>
+      <div class="button-row">
+        <a class="btn btn--primary" href={whatsappUrl()}>
+          <WhatsAppIcon />
+          Per WhatsApp anfragen
+        </a>
+        <a class="btn btn--secondary hero__call" href={telUrl}>
+          Anrufen: {site.phone.display}
+        </a>
+      </div>
+      <ul class="hero__benefits">
+        <li>
+          <CheckIcon />
+          Einweisung bei der Abholung
+        </li>
+        <li>
+          <CheckIcon />
+          Abholung nach Absprache, auch am Wochenende
+        </li>
+      </ul>
+    </div>
+
+    <div class="hero__photos">
+      {photoTiles.map((trailer, i) => (
+        <a class="photo-tile" href={`#${trailer.id}`}>
+          <Image
+            src={imageByFile(trailer.images[0].file)}
+            alt=""
+            widths={[240, 480]}
+            sizes="(min-width:900px) 180px, 30vw"
+            quality={66}
+            loading="eager"
+            fetchpriority={i === 0 ? 'high' : undefined}
+          />
+          <span>
+            {hyphenate(trailer.shortName)}
+            <b>{formatEuro(trailer.prices.day)} pro Tag</b>
+          </span>
+        </a>
+      ))}
+    </div>
+
+    <div class="hero__reviews card">
+      <RatingSummary class="hero__rating" suffix=" bei Google" />
+      <div class="hero__quotes">
+        {heroReviews.map((review) => (
+          <figure class="hero-quote">
+            <blockquote>„{review.quote}“</blockquote>
+            <figcaption>
+              <span class="stars" aria-hidden="true">
+                ★★★★★
+              </span>
+              {review.author ?? 'Google-Rezension'}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+      <a class="link-more hero__more" href="#stimmen">
+        Alle Bewertungen ansehen
+      </a>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    padding: 36px 0 44px;
+    background: linear-gradient(180deg, var(--color-tint) 0%, #fff 100%);
+  }
+
+  .hero__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 26px;
+  }
+
+  .hero__kicker {
+    margin-bottom: 12px;
+    color: var(--color-brand);
+    font-weight: 600;
+    font-size: 0.95rem;
+  }
+
+  .hero__lead {
+    max-width: 33em;
+    margin: 16px 0 24px;
+    color: var(--color-muted);
+    font-size: 1.12rem;
+  }
+
+  .hero__benefits {
+    display: grid;
+    gap: 8px;
+    margin: 22px 0 0;
+    padding: 0;
+    list-style: none;
+    font-size: 0.97rem;
+  }
+
+  .hero__benefits li {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .hero__benefits :global(svg) {
+    flex: none;
+    width: 20px;
+    height: 20px;
+    margin-top: 2px;
+    color: var(--color-brand);
+  }
+
+  /* Photo tiles */
+
+  .hero__photos {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .photo-tile {
+    position: relative;
+    display: block;
+    overflow: hidden;
+    background: #cfd5da;
+    border-radius: var(--radius);
+    box-shadow: 0 1px 3px rgb(15 23 42 / 12%);
+    color: #fff;
+    text-decoration: none;
+  }
+
+  .photo-tile :global(img) {
+    width: 100%;
+    height: 100%;
+    aspect-ratio: 3 / 4;
+    object-fit: cover;
+  }
+
+  .photo-tile span {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    padding: 34px 12px 11px;
+    background: linear-gradient(transparent, rgb(0 0 0 / 78%));
+    font-weight: 700;
+    font-size: 0.95rem;
+    line-height: 1.25;
+    overflow-wrap: break-word;
+  }
+
+  .photo-tile b {
+    display: block;
+    font-weight: 500;
+    font-size: 0.86rem;
+  }
+
+  /* Reviews box */
+
+  .hero__reviews {
+    padding: 20px;
+  }
+
+  .hero__quotes {
+    display: grid;
+    margin-top: 16px;
+  }
+
+  .hero-quote {
+    margin: 0;
+    padding: 14px 0;
+    border-top: 1px solid var(--color-line);
+  }
+
+  .hero-quote blockquote {
+    margin: 0;
+    font-size: 0.99rem;
+    line-height: 1.45;
+  }
+
+  .hero-quote figcaption {
+    margin-top: 6px;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+
+  .hero-quote .stars {
+    margin-right: 6px;
+    font-size: 0.9rem;
+  }
+
+  .hero__more {
+    margin-top: 4px;
+  }
+
+  @media (max-width: 899px) {
+    .hero__reviews {
+      order: 2;
+    }
+
+    .hero__photos {
+      order: 3;
+    }
+
+    .hero-quote:nth-child(3) {
+      display: none;
+    }
+  }
+
+  @media (max-width: 759px) {
+    .hero__call {
+      display: none;
+    }
+
+    .hero__benefits {
+      margin-top: 16px;
+    }
+
+    .photo-tile span {
+      padding: 24px 6px 7px;
+      font-size: 0.72rem;
+      letter-spacing: -0.01em;
+    }
+
+    .photo-tile b {
+      font-size: 0.72rem;
+    }
+  }
+
+  @media (min-width: 900px) {
+    .hero {
+      padding: 56px 0 64px;
+    }
+
+    .hero__grid {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      grid-template-areas: 'text photos' 'reviews reviews';
+      align-items: center;
+      gap: 36px 52px;
+    }
+
+    .hero__text {
+      grid-area: text;
+    }
+
+    .hero__photos {
+      grid-area: photos;
+    }
+
+    .hero__reviews {
+      display: grid;
+      grid-area: reviews;
+      grid-template-columns: 250px minmax(0, 1fr);
+      grid-template-areas: 'rating quotes' 'more quotes';
+      align-items: center;
+      gap: 6px 34px;
+      padding: 24px 28px;
+    }
+
+    .hero__reviews :global(.hero__rating) {
+      grid-area: rating;
+      align-self: end;
+    }
+
+    .hero__more {
+      grid-area: more;
+      align-self: start;
+      margin-top: 10px;
+    }
+
+    .hero__quotes {
+      grid-area: quotes;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 26px;
+      margin: 0;
+    }
+
+    .hero-quote {
+      padding: 2px 0 2px 26px;
+      border: 0;
+      border-left: 1px solid var(--color-line);
+    }
+  }
+</style>
