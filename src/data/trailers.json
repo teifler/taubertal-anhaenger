@@ -1,0 +1,246 @@
+[
+  {
+    "id": "autotransporter",
+    "name": "Autotransporter 2.700 kg",
+    "shortName": "Autotransporter",
+    "tagline": "Für Autos und Baumaschinen",
+    "description": "Tieflader mit zwei Achsen und Auflaufbremse. Das Auto fährt über die Auffahrschienen auf den rutschfesten Boden, festgezurrt wird an den Verzurrösen.",
+    "summary": "PKW- und Baumaschinenanhänger (Tieflader), Ladefläche 4,00 × 2,20 m, zwei Achsen, Auflaufbremse, Auffahrschienen.",
+    "isIllustration": false,
+    "images": [
+      {
+        "file": "autotransporter-1.jpg",
+        "alt": "Autotransporter 2.700 kg, Seitenansicht mit Auffahrschienen"
+      },
+      {
+        "file": "autotransporter-2.jpg",
+        "alt": "Autotransporter am Zugfahrzeug, Ladefläche von hinten"
+      },
+      {
+        "file": "autotransporter-3.jpg",
+        "alt": "Autotransporter mit ausgelegten Auffahrschienen"
+      },
+      {
+        "file": "autotransporter-4.jpg",
+        "alt": "Ladefläche des Autotransporters von vorn mit Deichsel und Stützrad"
+      },
+      {
+        "file": "autotransporter-5.jpg",
+        "alt": "Autotransporter angehängt, Ansicht von der Seite"
+      },
+      {
+        "file": "autotransporter-6.jpg",
+        "alt": "Autotransporter mit Zugfahrzeug aus der Entfernung"
+      }
+    ],
+    "specs": [
+      {
+        "label": "Länge",
+        "value": "4,00 m"
+      },
+      {
+        "label": "Breite",
+        "value": "2,20 m"
+      },
+      {
+        "label": "Gesamtgewicht",
+        "value": "2.700 kg"
+      },
+      {
+        "label": "Achsen",
+        "value": "2"
+      },
+      {
+        "label": "Bremse",
+        "value": "Auflaufbremse"
+      },
+      {
+        "label": "Kupplung",
+        "value": "Kugelkopf (PKW)"
+      },
+      {
+        "label": "Ausstattung",
+        "value": "Auffahrschienen, Stützrad"
+      }
+    ],
+    "prices": {
+      "day": 50,
+      "weekend": null,
+      "fiveDays": null,
+      "week": null
+    },
+    "deposit": 150,
+    "note": "Zurrgurte auf Wunsch 10 € für den ganzen Mietzeitraum.",
+    "inquiryObject": "den Autotransporter",
+    "ctaLabel": "Autotransporter anfragen"
+  },
+  {
+    "id": "tandemanhaenger",
+    "name": "Tandemanhänger 2.000 kg",
+    "shortName": "Tandemanhänger",
+    "tagline": "Offener Kasten, gebremst",
+    "description": "Zwei Achsen, niedrige Bordwände. Leer wiegt er 600 kg, bleiben 1.400 kg für die Ladung.",
+    "summary": "Offener Kastenanhänger mit zwei Achsen, gebremst, 3,02 × 1,85 × 0,35 m, Leergewicht 600 kg.",
+    "isIllustration": false,
+    "images": [
+      {
+        "file": "tandemanhaenger-1.jpg",
+        "alt": "Tandemanhänger 2.000 kg, offener Kasten mit niedrigen Bordwänden"
+      },
+      {
+        "file": "tandemanhaenger-2.jpg",
+        "alt": "Tandemanhänger am Zugfahrzeug"
+      },
+      {
+        "file": "tandemanhaenger-3.jpg",
+        "alt": "Tandemanhänger von hinten"
+      },
+      {
+        "file": "tandemanhaenger-4.jpg",
+        "alt": "Tandemanhänger von der Seite"
+      }
+    ],
+    "specs": [
+      {
+        "label": "Länge",
+        "value": "3,02 m"
+      },
+      {
+        "label": "Breite",
+        "value": "1,85 m"
+      },
+      {
+        "label": "Bordwand",
+        "value": "0,35 m"
+      },
+      {
+        "label": "Gesamtgewicht",
+        "value": "2.000 kg"
+      },
+      {
+        "label": "Leergewicht",
+        "value": "600 kg"
+      },
+      {
+        "label": "Nutzlast",
+        "value": "1.400 kg"
+      },
+      {
+        "label": "Bremse",
+        "value": "gebremst"
+      }
+    ],
+    "prices": {
+      "day": 35,
+      "weekend": 70,
+      "fiveDays": 120,
+      "week": 150
+    },
+    "deposit": 100,
+    "note": null,
+    "inquiryObject": "den Tandemanhänger (2.000 kg)",
+    "ctaLabel": "Tandemanhänger anfragen"
+  },
+  {
+    "id": "planenanhaenger",
+    "name": "Planenanhänger",
+    "shortName": "Planenanhänger",
+    "tagline": "Hochplane, 1,80 m hoch",
+    "description": "Unter der Plane bleibt die Ladung trocken, auch wenn es auf der A 81 schüttet. Hinten geht die Plane ganz auf.",
+    "summary": "Anhänger mit Hochplane, Laderaum 2,50 × 1,20 × 1,80 m.",
+    "isIllustration": false,
+    "images": [
+      {
+        "file": "planenanhaenger-1.jpg",
+        "alt": "Planenanhänger mit Hochplane am Zugfahrzeug"
+      },
+      {
+        "file": "planenanhaenger-2.jpg",
+        "alt": "Laderaum des Planenanhängers von hinten, Plane geöffnet"
+      },
+      {
+        "file": "planenanhaenger-3.jpg",
+        "alt": "Planenanhänger von schräg vorn"
+      },
+      {
+        "file": "planenanhaenger-4.jpg",
+        "alt": "Planenanhänger von der Seite"
+      },
+      {
+        "file": "planenanhaenger-5.jpg",
+        "alt": "Planenanhänger von hinten"
+      }
+    ],
+    "specs": [
+      {
+        "label": "Länge",
+        "value": "2,50 m"
+      },
+      {
+        "label": "Breite",
+        "value": "1,20 m"
+      },
+      {
+        "label": "Höhe",
+        "value": "1,80 m"
+      },
+      {
+        "label": "Aufbau",
+        "value": "Hochplane"
+      },
+      {
+        "label": "Gesamtgewicht",
+        "value": null
+      }
+    ],
+    "prices": {
+      "day": 25,
+      "weekend": 60,
+      "fiveDays": 100,
+      "week": 120
+    },
+    "deposit": 100,
+    "note": null,
+    "inquiryObject": "den Planenanhänger",
+    "ctaLabel": "Planenanhänger anfragen"
+  },
+  {
+    "id": "anhaenger-750-kg",
+    "name": "Anhänger 750 kg",
+    "shortName": "Anhänger 750 kg",
+    "tagline": "Der Kleine für den Wertstoffhof",
+    "description": "Unser günstigster Anhänger. Klasse B reicht, also der normale Autoführerschein.",
+    "summary": "Anhänger mit 750 kg zulässigem Gesamtgewicht, mit Führerschein Klasse B zu ziehen.",
+    "isIllustration": true,
+    "images": [
+      {
+        "file": "anhaenger-750kg-symbolbild.png",
+        "alt": "Anhänger mit 750 kg Gesamtgewicht, Zeichnung"
+      }
+    ],
+    "specs": [
+      {
+        "label": "Gesamtgewicht",
+        "value": "750 kg"
+      },
+      {
+        "label": "Führerschein",
+        "value": "Klasse B"
+      },
+      {
+        "label": "Maße",
+        "value": null
+      }
+    ],
+    "prices": {
+      "day": 20,
+      "weekend": 50,
+      "fiveDays": 80,
+      "week": 100
+    },
+    "deposit": 100,
+    "note": null,
+    "inquiryObject": "den 750-kg-Anhänger",
+    "ctaLabel": "750-kg-Anhänger anfragen"
+  }
+]

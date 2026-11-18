@@ -1,0 +1,26 @@
+[
+  {
+    "question": "Was kostet es, in Tauberbischofsheim einen Anhänger zu mieten?",
+    "answer": "Der 750-kg-Anhänger kostet {day:anhaenger-750-kg} am Tag, der Planenanhänger {day:planenanhaenger}, der Tandemanhänger {day:tandemanhaenger} und der Autotransporter {day:autotransporter}. Dazu kommt die Kaution."
+  },
+  {
+    "question": "Welchen Führerschein brauche ich für einen Anhänger?",
+    "answer": "Mit Klasse B dürfen Sie jeden Anhänger bis 750 kg zulässigem Gesamtgewicht ziehen. Schwerere Anhänger gehen mit Klasse B nur, wenn Auto und Anhänger zusammen höchstens 3.500 kg zulässiges Gesamtgewicht haben. Mit B96 sind es 4.250 kg, mit BE dürfen Sie Anhänger bis 3.500 kg ziehen. Was Ihr Auto ziehen darf, steht im Fahrzeugschein unter O.1 und O.2."
+  },
+  {
+    "question": "Was kostet ein Anhänger übers Wochenende?",
+    "answer": "Von Freitag bis Sonntag kostet der 750-kg-Anhänger {weekend:anhaenger-750-kg}, der Planenanhänger {weekend:planenanhaenger} und der Tandemanhänger {weekend:tandemanhaenger}. Der Autotransporter kostet {day:autotransporter} pro Tag."
+  },
+  {
+    "question": "Wie hoch ist die Kaution?",
+    "answer": "{deposit:tandemanhaenger} je Anhänger, beim Autotransporter {deposit:autotransporter}."
+  },
+  {
+    "question": "Kann ich ein Auto oder einen Minibagger transportieren?",
+    "answer": "Dafür ist der Autotransporter da. Die Ladefläche ist 4 Meter lang und 2,20 Meter breit, das zulässige Gesamtgewicht liegt bei 2.700 kg. Aufgefahren wird über Auffahrschienen. {note:autotransporter}"
+  },
+  {
+    "question": "Wo und wann hole ich den Anhänger ab?",
+    "answer": "In der {street} in {city}. Die Uhrzeit machen wir vorher per WhatsApp oder am Telefon aus."
+  }
+]

@@ -1,0 +1,18 @@
+[
+  {
+    "task": "Auto oder Minibagger",
+    "trailerId": "autotransporter"
+  },
+  {
+    "task": "Brennholz und Baumaterial",
+    "trailerId": "tandemanhaenger"
+  },
+  {
+    "task": "Umzug mit Möbeln und Kartons",
+    "trailerId": "planenanhaenger"
+  },
+  {
+    "task": "Grünschnitt, Fahrt zum Wertstoffhof",
+    "trailerId": "anhaenger-750-kg"
+  }
+]

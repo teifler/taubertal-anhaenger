@@ -1,0 +1,48 @@
+{
+  "name": "Taubertal Anhänger",
+  "company": "Fahrzeugvermietung Bauer",
+  "owner": "Maike Bauer",
+  "address": {
+    "street": "Flurstraße 2C",
+    "district": "Distelhausen",
+    "postalCode": "97941",
+    "city": "Tauberbischofsheim",
+    "region": "BW",
+    "country": "DE"
+  },
+  "phone": {
+    "e164": "+4916091959496",
+    "display": "0160 91959496"
+  },
+  "email": null,
+  "vatId": null,
+  "geo": {
+    "lat": 49.60055,
+    "lng": 9.68964
+  },
+  "seo": {
+    "title": "Anhänger mieten Tauberbischofsheim ab {minPrice} | Taubertal Anhänger",
+    "description": "Anhänger mieten in Tauberbischofsheim: Autotransporter, Tandem-, Planen- und 750-kg-Anhänger ab {minPrice} am Tag. Anfrage per WhatsApp oder Telefon {phone}.",
+    "ogTitle": "Anhänger mieten in Tauberbischofsheim ab {minPrice} am Tag",
+    "ogDescription": "Vier Anhänger von 750 bis 2.700 kg, Abholung in der {street}. Anfrage per WhatsApp.",
+    "ogImageAlt": "Autotransporter von Taubertal Anhänger in Tauberbischofsheim",
+    "businessDescription": "Anhängerverleih in Tauberbischofsheim: Autotransporter, Tandemanhänger, Planenanhänger und 750-kg-Anhänger."
+  },
+  "copy": {
+    "lead": "Vier Anhänger von 750 bis 2.700 kg stehen in der {street}. Der kleinste kostet {minPrice} am Tag, der größte trägt ein Auto oder einen Minibagger.",
+    "pickup": "Abholung und Rückgabe nach Absprache, auch abends und am Wochenende.",
+    "travelTimes": "Aus Lauda-Königshofen, Grünsfeld, Werbach und Külsheim fahren Sie rund eine Viertelstunde in die Flurstraße. Aus Wertheim ist es eine gute halbe Stunde."
+  },
+  "pricesAsOf": "November 2026",
+  "lastUpdated": "2026-11-18",
+  "rating": {
+    "value": 5,
+    "count": 12,
+    "asOf": "November 2026",
+    "url": "https://share.google/p3LTnUqNv4Djlg3mj"
+  },
+  "profiles": {
+    "kleinanzeigen": "https://www.kleinanzeigen.de/s-bestandsliste.html?userId=137386711"
+  },
+  "serviceArea": ["Tauberbischofsheim", "Lauda-Königshofen", "Grünsfeld", "Werbach", "Külsheim", "Wertheim"]
+}
