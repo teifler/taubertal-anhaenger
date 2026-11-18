@@ -1,0 +1,141 @@
+---
+import { site } from '../data';
+import { telUrl } from '../lib/links';
+import TrailerLogo from './icons/TrailerLogo.astro';
+
+const navItems = [
+  { href: '/#anhaenger', label: 'Anhänger' },
+  { href: '/#preise', label: 'Preise' },
+  { href: '/#ablauf', label: 'Ablauf' },
+  { href: '/#stimmen', label: 'Bewertungen' },
+  { href: '/#kontakt', label: 'Kontakt' },
+];
+---
+
+<header class="site-header">
+  <div class="container site-header__inner">
+    <a class="brand" href="/#start">
+      <TrailerLogo />
+      <span>
+        <span class="brand__name">{site.name}</span>
+        <span class="brand__company">{site.company}</span>
+      </span>
+    </a>
+    <nav class="site-nav" aria-label="Seitenabschnitte">
+      {navItems.map((item) => (
+        <a href={item.href}>{item.label}</a>
+      ))}
+    </nav>
+    <a class="btn site-header__phone" href={telUrl}>
+      {site.phone.display}
+    </a>
+  </div>
+</header>
+
+<style>
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 40;
+    background: rgb(255 255 255 / 72%);
+    -webkit-backdrop-filter: saturate(180%) blur(14px);
+    backdrop-filter: saturate(180%) blur(14px);
+    border-bottom: 1px solid rgb(15 23 42 / 8%);
+  }
+
+  @supports not ((backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px))) {
+    .site-header {
+      background: rgb(255 255 255 / 97%);
+    }
+  }
+
+  .site-header__inner {
+    display: flex;
+    align-items: center;
+    gap: 26px;
+    min-height: 66px;
+  }
+
+  .brand {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-right: auto;
+    text-decoration: none;
+  }
+
+  .brand :global(svg) {
+    flex: none;
+    width: 40px;
+    height: 28px;
+    color: var(--color-brand);
+  }
+
+  .brand__name {
+    display: block;
+    font-weight: 800;
+    font-size: 1.18rem;
+    line-height: 1.05;
+    letter-spacing: -0.02em;
+  }
+
+  .brand__company {
+    display: block;
+    margin-top: 3px;
+    font-size: 0.76rem;
+    opacity: 0.75;
+  }
+
+  .site-nav {
+    display: none;
+    gap: 24px;
+  }
+
+  .site-nav a {
+    padding: 6px 0;
+    border-bottom: 2px solid transparent;
+    font-weight: 600;
+    font-size: 0.96rem;
+    text-decoration: none;
+  }
+
+  .site-nav a:hover {
+    border-color: var(--color-brand);
+  }
+
+  .site-header__phone {
+    min-height: 42px;
+    padding: 0.45em 1em;
+    background: #fff;
+    border-color: var(--color-line);
+    border-radius: 999px;
+    box-shadow: none;
+    font-size: 0.95rem;
+    white-space: nowrap;
+  }
+
+  @media (min-width: 960px) {
+    .site-nav {
+      display: flex;
+    }
+  }
+
+  @media (max-width: 520px) {
+    .site-header__inner {
+      gap: 12px;
+      min-height: 58px;
+    }
+
+    .brand :global(svg) {
+      width: 34px;
+    }
+
+    .brand__name {
+      font-size: 1.05rem;
+    }
+
+    .brand__company {
+      display: none;
+    }
+  }
+</style>

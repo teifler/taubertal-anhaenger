@@ -1,0 +1,42 @@
+---
+import { trailers } from '../data';
+import { capitalize, numberWord } from '../lib/format';
+import { hasLongTermPrices } from '../lib/pricing';
+import TrailerCard from './TrailerCard.astro';
+
+const total = numberWord(trailers.length);
+const withLongTerm = trailers.filter(hasLongTermPrices).length;
+const longTermSentence =
+  withLongTerm === trailers.length
+    ? 'Alle auch übers Wochenende oder für eine Woche.'
+    : `Alle ${total} leihen Sie tageweise, ${numberWord(withLongTerm)} davon auch übers Wochenende oder für eine Woche.`;
+---
+
+<section class="section section--alt" id="anhaenger">
+  <div class="container">
+    <div class="section-header">
+      <h2>{capitalize(total)} PKW-Anhänger zum Mieten</h2>
+      <p>Bei jedem Anhänger stehen Tagespreis, Maße und Kaution. {longTermSentence}</p>
+    </div>
+    <div class="trailer-grid">
+      {trailers.map((trailer) => (
+        <TrailerCard trailer={trailer} />
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .trailer-grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+  }
+
+  @media (min-width: 900px) {
+    .trailer-grid {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 26px;
+    }
+  }
+</style>

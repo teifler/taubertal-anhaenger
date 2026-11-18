@@ -1,0 +1,81 @@
+---
+import { steps } from '../data';
+---
+
+<section class="section section--alt" id="ablauf">
+  <div class="container">
+    <div class="section-header">
+      <h2>So mieten Sie einen Anhänger</h2>
+    </div>
+    <ol class="steps">
+      {steps.map((step) => (
+        <li class="card">
+          <b>{step.title}</b>
+          <p>{step.text}</p>
+        </li>
+      ))}
+    </ol>
+  </div>
+</section>
+
+<style>
+  .steps {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    counter-reset: step;
+  }
+
+  li {
+    display: grid;
+    grid-template-columns: 44px minmax(0, 1fr);
+    gap: 4px 14px;
+    padding: 20px;
+    counter-increment: step;
+  }
+
+  li::before {
+    content: counter(step);
+    display: grid;
+    grid-row: span 2;
+    place-items: center;
+    width: 44px;
+    height: 44px;
+    background: var(--color-tint);
+    border-radius: 50%;
+    box-shadow: inset 0 0 0 1px var(--color-tint-line);
+    color: var(--color-brand-dark);
+    font-weight: 800;
+    font-size: 1.1rem;
+  }
+
+  b {
+    align-self: end;
+    font-weight: 800;
+    font-size: 1.08rem;
+  }
+
+  p {
+    color: var(--color-muted);
+    font-size: 0.97rem;
+  }
+
+  @media (min-width: 900px) {
+    .steps {
+      grid-template-columns: repeat(4, 1fr);
+    }
+
+    li {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+
+    li::before {
+      grid-row: auto;
+      margin-bottom: 8px;
+    }
+  }
+</style>

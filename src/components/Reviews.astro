@@ -1,0 +1,94 @@
+---
+import { reviews, site } from '../data';
+import RatingSummary from './RatingSummary.astro';
+---
+
+<section class="section" id="stimmen">
+  <div class="container">
+    <div class="reviews__header">
+      <h2>Das schreiben Mieter bei Google</h2>
+      <RatingSummary class="reviews__rating" suffix={`, Stand ${site.rating.asOf}`} />
+    </div>
+    <div class="reviews__grid">
+      {reviews.map((review) => (
+        <figure class="review card">
+          <span class="stars" aria-hidden="true">
+            ★★★★★
+          </span>
+          <blockquote>„{review.quote}“</blockquote>
+          <figcaption>{[review.author ?? 'Google-Rezension', review.context].filter(Boolean).join(', ')}</figcaption>
+        </figure>
+      ))}
+    </div>
+    <p class="reviews__more">
+      <a class="link-more" href={site.rating.url}>
+        Alle {site.rating.count} Rezensionen bei Google lesen
+      </a>
+    </p>
+  </div>
+</section>
+
+<style>
+  .reviews__header {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    gap: 16px 32px;
+    margin-bottom: 26px;
+  }
+
+  .reviews__grid {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 16px;
+  }
+
+  .review {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 20px;
+  }
+
+  .stars {
+    font-size: 1.05rem;
+    line-height: 1;
+  }
+
+  blockquote {
+    margin: 0;
+    font-size: 1.04rem;
+    line-height: 1.45;
+  }
+
+  figcaption {
+    margin-top: auto;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+
+  .reviews__more {
+    margin-top: 22px;
+  }
+
+  @media (min-width: 900px) {
+    .reviews__header :global(.reviews__rating) {
+      align-self: end;
+    }
+
+    .reviews__grid {
+      grid-template-columns: repeat(6, 1fr);
+    }
+
+    /* Three cards in the first row, two wider ones in the second. */
+    .review {
+      grid-column: span 2;
+    }
+
+    .review:nth-child(n + 4) {
+      grid-column: span 3;
+    }
+  }
+</style>

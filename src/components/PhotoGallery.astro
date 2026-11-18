@@ -1,0 +1,169 @@
+---
+import { Image } from 'astro:assets';
+
+import type { Trailer } from '../data';
+import { imageByFile } from '../lib/images';
+
+interface Props {
+  images: Trailer['images'];
+  /** Accessible name of the scroll region, e.g. "Fotos Autotransporter". */
+  label: string;
+  /** Drawing instead of a photo: shown uncropped with a "Symbolbild" badge. */
+  isIllustration: boolean;
+}
+
+const { images, label, isIllustration } = Astro.props;
+const hasNavigation = images.length > 1;
+---
+
+<div class="gallery" data-gallery>
+  <div class="gallery__track" tabindex="0" role="region" aria-label={label}>
+    {images.map((image) => (
+      <Image
+        class={isIllustration ? 'is-illustration' : undefined}
+        src={imageByFile(image.file)}
+        alt={image.alt}
+        widths={[480, 800]}
+        sizes="(min-width:900px) 560px, 100vw"
+        quality={72}
+        loading="lazy"
+      />
+    ))}
+  </div>
+  {isIllustration ? (
+    <span class="gallery__badge">Symbolbild</span>
+  ) : (
+    <span class="gallery__counter">{images.length} Fotos, wischen</span>
+  )}
+  {hasNavigation && (
+    <>
+      <button type="button" class="gallery__nav gallery__nav--prev" data-step="-1" aria-label="Vorheriges Foto" hidden>
+        ‹
+      </button>
+      <button type="button" class="gallery__nav gallery__nav--next" data-step="1" aria-label="Nächstes Foto" hidden>
+        ›
+      </button>
+    </>
+  )}
+</div>
+
+<script>
+  // Progressive enhancement: without JS the track is still a swipeable, keyboard-scrollable
+  // strip. With JS the prev/next buttons appear and the counter shows the current photo.
+  const reducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+  function initGallery(root: HTMLElement): void {
+    const track = root.querySelector<HTMLElement>('.gallery__track');
+    const counter = root.querySelector<HTMLElement>('.gallery__counter');
+    const buttons = root.querySelectorAll<HTMLButtonElement>('button[data-step]');
+    if (!track || !counter || buttons.length === 0) return;
+
+    const count = track.children.length;
+    const currentIndex = () => Math.round(track.scrollLeft / track.clientWidth);
+    const updateCounter = () => {
+      counter.textContent = `${currentIndex() + 1} / ${count}`;
+    };
+
+    const goTo = (index: number) => {
+      const wrapped = (index + count) % count; // past the last photo → back to the first
+      track.scrollTo({ left: wrapped * track.clientWidth, behavior: reducedMotion.matches ? 'auto' : 'smooth' });
+    };
+
+    for (const button of buttons) {
+      button.hidden = false;
+      button.addEventListener('click', () => goTo(currentIndex() + Number(button.dataset.step)));
+    }
+    track.addEventListener('scroll', updateCounter, { passive: true });
+    updateCounter();
+  }
+
+  document.querySelectorAll<HTMLElement>('[data-gallery]').forEach(initGallery);
+</script>
+
+<style>
+  .gallery {
+    position: relative;
+    background: #e9ecef;
+  }
+
+  .gallery__track {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+
+  .gallery__track::-webkit-scrollbar {
+    display: none;
+  }
+
+  /* The card clips overflow, so draw the focus ring inside the track. */
+  .gallery__track:focus-visible {
+    outline-offset: -3px;
+  }
+
+  .gallery__track :global(img) {
+    flex: 0 0 100%;
+    width: 100%;
+    aspect-ratio: 16 / 11;
+    object-fit: cover;
+    scroll-snap-align: start;
+  }
+
+  .gallery__track :global(img.is-illustration) {
+    padding: 6% 14%;
+    background: #fff;
+    object-fit: contain;
+  }
+
+  .gallery__nav {
+    position: absolute;
+    top: 50%;
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+    border: 0;
+    border-radius: 50%;
+    background: rgb(255 255 255 / 94%);
+    box-shadow: 0 1px 4px rgb(0 0 0 / 25%);
+    color: #111;
+    font-size: 22px;
+    line-height: 1;
+    cursor: pointer;
+    transform: translateY(-50%);
+  }
+
+  .gallery__nav[hidden] {
+    display: none;
+  }
+
+  .gallery__nav--prev {
+    left: 10px;
+  }
+
+  .gallery__nav--next {
+    right: 10px;
+  }
+
+  .gallery__counter,
+  .gallery__badge {
+    position: absolute;
+    bottom: 10px;
+    padding: 6px 9px;
+    background: rgb(0 0 0 / 66%);
+    border-radius: 99px;
+    color: #fff;
+    font: 600 0.78rem/1 var(--font);
+  }
+
+  .gallery__counter {
+    right: 10px;
+  }
+
+  .gallery__badge {
+    left: 10px;
+  }
+</style>

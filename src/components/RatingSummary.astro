@@ -1,0 +1,55 @@
+---
+import { site } from '../data';
+import { formatRating } from '../lib/format';
+
+interface Props {
+  /** Text after "12 Rezensionen", e.g. "bei Google". */
+  suffix: string;
+  class?: string;
+}
+
+const { suffix, class: className } = Astro.props;
+---
+
+<div class:list={['rating-summary', className]}>
+  <span class="rating-summary__value">{formatRating(site.rating.value)}</span>
+  <span class="rating-summary__text">
+    <span class="stars" aria-hidden="true">
+      ★★★★★
+    </span>
+    <b>{site.rating.count} Rezensionen</b>
+    {suffix}
+  </span>
+</div>
+
+<style>
+  .rating-summary {
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .rating-summary__value {
+    font-size: 2.7rem;
+    font-weight: 800;
+    line-height: 1;
+    letter-spacing: -0.04em;
+  }
+
+  .rating-summary__text {
+    color: var(--color-muted);
+    font-size: 0.93rem;
+    line-height: 1.35;
+  }
+
+  .stars {
+    display: block;
+    font-size: 1.3rem;
+    line-height: 1.1;
+  }
+
+  b {
+    color: var(--color-ink);
+    font-weight: 700;
+  }
+</style>
