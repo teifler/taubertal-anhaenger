@@ -1,0 +1,295 @@
+/*
+ * Global styles: design tokens, base elements and the few patterns shared by several components
+ * (container, section, card, button, data list). Everything else is scoped inside its component.
+ */
+
+@font-face {
+  font-family: 'Inter';
+  font-weight: 100 900;
+  font-style: normal;
+  font-display: swap;
+  src: url(/fonts/inter-latin-wght-normal.woff2) format('woff2');
+}
+
+/* ---------- Design tokens ---------- */
+
+:root {
+  --font: 'Inter', system-ui, sans-serif;
+
+  --color-bg: #fff;
+  --color-surface: #fff;
+  --color-surface-alt: #f8fafc;
+  --color-ink: #0f172a;
+  --color-muted: #64748b;
+  --color-line: #e2e8f0;
+  --color-brand: #15803d;
+  --color-brand-dark: #166534;
+  --color-tint: #f0fdf4;
+  --color-tint-line: #dcfce7;
+  --color-zebra: #f8fafc;
+  --color-star: #f59e0b;
+
+  --radius: 16px;
+  --radius-button: 12px;
+  --shadow-card: 0 1px 2px rgb(15 23 42 / 4%), 0 1px 3px rgb(15 23 42 / 5%);
+
+  --header-offset: 84px;
+}
+
+/* ---------- Base ---------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--header-offset);
+  -webkit-text-size-adjust: 100%;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
+
+/* Keep focused elements clear of the fixed contact bar on phones. */
+@media (max-width: 759px) {
+  html {
+    scroll-padding-bottom: 90px;
+  }
+}
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-ink);
+  font: 400 1.03rem/1.55 var(--font);
+  -webkit-font-smoothing: antialiased;
+}
+
+img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+}
+
+a {
+  color: inherit;
+  -webkit-tap-highlight-color: rgb(0 0 0 / 8%);
+}
+
+p {
+  margin: 0;
+}
+
+h1,
+h2,
+h3 {
+  margin: 0;
+  line-height: 1.12;
+  letter-spacing: -0.025em;
+  font-weight: 700;
+  text-wrap: balance;
+}
+
+h1 {
+  font-size: clamp(1.55rem, 7.4vw, 3.2rem);
+  font-weight: 800;
+}
+
+h2 {
+  font-size: clamp(1.5rem, 3.2vw, 2.15rem);
+}
+
+h3 {
+  font-size: 1.28rem;
+  line-height: 1.2;
+}
+
+:focus-visible {
+  outline: 3px solid var(--color-brand);
+  outline-offset: 3px;
+}
+
+/* ---------- Layout ---------- */
+
+.container {
+  max-width: 1180px;
+  margin: 0 auto;
+  padding-inline: max(20px, env(safe-area-inset-left)) max(20px, env(safe-area-inset-right));
+}
+
+.section {
+  padding: 56px 0;
+}
+
+.section--alt {
+  background: var(--color-surface-alt);
+}
+
+.section-header {
+  max-width: 44em;
+  margin-bottom: 28px;
+}
+
+.section-header p {
+  margin-top: 10px;
+  color: var(--color-muted);
+}
+
+@media (min-width: 900px) {
+  .container {
+    padding-inline: max(28px, env(safe-area-inset-left)) max(28px, env(safe-area-inset-right));
+  }
+
+  .section {
+    padding: 80px 0;
+  }
+}
+
+/* ---------- Shared patterns ---------- */
+
+.card {
+  background: var(--color-surface);
+  border: 1px solid var(--color-line);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-card);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.55em;
+  min-height: 50px;
+  padding: 0.7em 1.3em;
+  border: 1px solid transparent;
+  border-radius: var(--radius-button);
+  box-shadow: 0 1px 2px rgb(15 23 42 / 6%);
+  font: 600 1rem/1.15 var(--font);
+  text-align: center;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.btn svg {
+  flex: none;
+  width: 1.25em;
+  height: 1.25em;
+}
+
+.btn--primary {
+  background: var(--color-brand);
+  color: #fff;
+}
+
+.btn--secondary {
+  background: #fff;
+  border-color: var(--color-line);
+  color: var(--color-ink);
+}
+
+@media (hover: hover) {
+  .btn--primary:hover {
+    background: var(--color-brand-dark);
+  }
+
+  .btn--secondary:hover {
+    border-color: #94a3b8;
+  }
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+@media (max-width: 899px) {
+  .button-row .btn {
+    flex: 1 1 100%;
+  }
+}
+
+.stars {
+  color: var(--color-star);
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+}
+
+.link-more {
+  display: inline-block;
+  color: var(--color-brand);
+  font-weight: 700;
+  font-size: 0.93rem;
+  text-underline-offset: 3px;
+}
+
+/* Label/value list: technical data, prices, use cases. */
+.data-list {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: #fff;
+  border: 1px solid var(--color-line);
+  border-radius: 12px;
+}
+
+.data-list > div {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 14px;
+  padding: 10px 14px;
+  font-size: 0.94rem;
+}
+
+.data-list > div:nth-child(odd) {
+  background: var(--color-zebra);
+}
+
+.data-list dt {
+  color: var(--color-muted);
+}
+
+.data-list dd {
+  margin: 0;
+  font-weight: 600;
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+.data-list dd.is-unknown {
+  font-weight: 400;
+  color: var(--color-muted);
+}
+
+/* ---------- Utilities ---------- */
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.skip-link {
+  position: absolute;
+  top: 0;
+  left: -999px;
+  z-index: 99;
+  padding: 10px 14px;
+  background: #fff;
+  color: var(--color-ink);
+  border-radius: 0 0 8px 0;
+}
+
+.skip-link:focus {
+  left: 0;
+}

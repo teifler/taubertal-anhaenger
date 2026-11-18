@@ -1,0 +1,81 @@
+---
+import '../styles/global.css';
+
+import MobileContactBar from '../components/MobileContactBar.astro';
+import RatingBar from '../components/RatingBar.astro';
+import SiteFooter from '../components/SiteFooter.astro';
+import SiteHeader from '../components/SiteHeader.astro';
+import { site } from '../data';
+import { serializeJsonLd } from '../lib/structured-data';
+import { requireSite } from '../lib/site-url';
+
+interface Props {
+  title: string;
+  description?: string;
+  /** Keep the page out of search results (legal placeholders, 404). Also drops the canonical link. */
+  noindex?: boolean;
+  /** JSON-LD object, rendered as an inline script. */
+  structuredData?: object;
+  /** Start page only: Open Graph, geo tags and the Markdown alternate. */
+  isHome?: boolean;
+}
+
+const { title, description, noindex = false, structuredData, isHome = false } = Astro.props;
+const siteUrl = requireSite(Astro.site);
+const canonical = new URL(Astro.url.pathname, siteUrl).href;
+const ogImage = new URL('/og-bild.jpg', siteUrl).href;
+---
+
+<!doctype html>
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+    <title>{title}</title>
+    {description && <meta name="description" content={description} />}
+    {!noindex && <link rel="canonical" href={canonical} />}
+    <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
+    <meta name="format-detection" content="telephone=no" />
+    <meta name="theme-color" content="#F0FDF4" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    {isHome && (
+      <>
+        <meta name="geo.region" content={`${site.address.country}-${site.address.region}`} />
+        <meta name="geo.placename" content={site.address.city} />
+        <meta name="geo.position" content={`${site.geo.lat};${site.geo.lng}`} />
+        <meta property="og:type" content="website" />
+        <meta property="og:locale" content="de_DE" />
+        <meta property="og:site_name" content={site.name} />
+        <meta property="og:title" content={site.seo.ogTitle} />
+        <meta property="og:description" content={site.seo.ogDescription} />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:image:alt" content={site.seo.ogImageAlt} />
+        <meta name="twitter:card" content="summary_large_image" />
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href="/index.html.md"
+          title="Seite als Markdown für KI-Assistenten"
+        />
+      </>
+    )}
+    {structuredData && <script type="application/ld+json" is:inline set:html={serializeJsonLd(structuredData)} />}
+  </head>
+  <body>
+    <a class="skip-link" href="#inhalt">
+      Zum Inhalt
+    </a>
+    <RatingBar />
+    <SiteHeader />
+    <main id="inhalt">
+      <slot />
+    </main>
+    <SiteFooter />
+    <MobileContactBar />
+  </body>
+</html>
