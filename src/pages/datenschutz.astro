@@ -1,0 +1,23 @@
+---
+import LegalContact from '../components/LegalContact.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { site } from '../data';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// TODO(before launch): add the hosting, WhatsApp and Google Maps sections and delete the placeholder note.
+---
+
+<BaseLayout title={`Datenschutz | ${site.name}`} noindex>
+  <LegalPage title="Datenschutz">
+    <p class="placeholder-note">Platzhalter. Es fehlen: Hoster, Hinweis zu WhatsApp und Google Maps.</p>
+
+    <h2>Verantwortlicher</h2>
+    <LegalContact />
+
+    <h2>Cookies und Drittanbieter</h2>
+    <p>
+      Die Seite setzt keine Cookies und lädt keine Schriften oder Skripte von Dritten. WhatsApp und Google Maps sind nur
+      verlinkt, es wird nichts eingebettet.
+    </p>
+  </LegalPage>
+</BaseLayout>
