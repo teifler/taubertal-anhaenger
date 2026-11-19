@@ -1,0 +1,32 @@
+---
+import LegalContact from '../components/LegalContact.astro';
+import LegalPage from '../components/LegalPage.astro';
+import { site } from '../data';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+// noindex on purpose: the page names a private person and has nothing to rank for.
+---
+
+<BaseLayout title={`Impressum | ${site.name}`} noindex>
+  <LegalPage title="Impressum">
+    {!site.email && (
+      <p class="placeholder-note">Noch offen: E-Mail-Adresse (Pflichtangabe). Eintragen in src/data/site.json.</p>
+    )}
+
+    <h2>Angaben gemäß § 5 DDG</h2>
+    <LegalContact />
+
+    {site.vatId && (
+      <>
+        <h2>Umsatzsteuer-ID</h2>
+        <p>{`Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: ${site.vatId}`}</p>
+      </>
+    )}
+
+    <h2>Verbraucherstreitbeilegung</h2>
+    <p>
+      Wir sind nicht bereit und nicht verpflichtet, an Streitbeilegungsverfahren vor einer Verbraucherschlichtungsstelle
+      teilzunehmen.
+    </p>
+  </LegalPage>
+</BaseLayout>

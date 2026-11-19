@@ -1,0 +1,41 @@
+---
+interface Props {
+  title: string;
+}
+
+const { title } = Astro.props;
+---
+
+<div class="container legal">
+  <h1>{title}</h1>
+  <slot />
+</div>
+
+<style>
+  .legal {
+    max-width: 760px;
+    padding-top: 48px;
+    padding-bottom: 64px;
+  }
+
+  h1 {
+    margin-bottom: 18px;
+    font-size: 2rem;
+  }
+
+  .legal :global(h2) {
+    margin: 30px 0 10px;
+    font-size: 1.2rem;
+  }
+
+  .legal :global(p) {
+    margin-bottom: 14px;
+  }
+
+  .legal :global(.placeholder-note) {
+    padding: 14px 16px;
+    background: #fef3c7;
+    border: 1px solid #f59e0b;
+    border-radius: 10px;
+  }
+</style>

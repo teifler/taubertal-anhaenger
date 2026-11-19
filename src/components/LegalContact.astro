@@ -1,0 +1,29 @@
+---
+/**
+ * Provider details for the Impressum (§ 5 DDG) and the controller in the privacy policy (Art. 13 DSGVO).
+ * The owner's name comes first: in a sole proprietorship the person, not the trading name, is the legal entity.
+ */
+import { site } from '../data';
+import { telUrl } from '../lib/links';
+
+const { street, district, postalCode, city } = site.address;
+---
+
+<p>
+  {site.owner}
+  <br />
+  {site.company}
+  <br />
+  {street}
+  <br />
+  {`${postalCode} ${city}-${district}`}
+</p>
+<p>
+  Telefon: <a href={telUrl}>{site.phone.display}</a>
+  {site.email && (
+    <>
+      <br />
+      E-Mail: <a href={`mailto:${site.email}`}>{site.email}</a>
+    </>
+  )}
+</p>
