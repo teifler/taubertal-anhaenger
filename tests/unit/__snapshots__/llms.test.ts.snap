@@ -1,0 +1,150 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`buildPageMarkdown > matches the reviewed snapshot (update with \`npm test -- -u\` after content changes) 1`] = `
+"# Anhänger mieten in Tauberbischofsheim
+
+Vier Anhänger von 750 bis 2.700 kg stehen in der Flurstraße 2C. Der kleinste kostet 20 € am Tag, der größte trägt ein Auto oder einen Minibagger. Anfrage per WhatsApp oder Telefon: 0160 91959496.
+
+Stand: November 2026.
+
+## Vier PKW-Anhänger zum Mieten
+
+### Autotransporter 2.700 kg mieten
+
+Für Autos und Baumaschinen. Tieflader mit zwei Achsen und Auflaufbremse. Das Auto fährt über die Auffahrschienen auf den rutschfesten Boden, festgezurrt wird an den Verzurrösen.
+
+| Technische Daten | |
+|---|---|
+| Länge | 4,00 m |
+| Breite | 2,20 m |
+| Gesamtgewicht | 2.700 kg |
+| Achsen | 2 |
+| Bremse | Auflaufbremse |
+| Kupplung | Kugelkopf (PKW) |
+| Ausstattung | Auffahrschienen, Stützrad |
+
+| Mietdauer | Preis |
+|---|---|
+| 1 Tag | 50 € |
+| Wochenende (Fr–So) | auf Anfrage |
+| 5 Tage | auf Anfrage |
+| 7 Tage | auf Anfrage |
+| Kaution | 150 € |
+
+Zurrgurte auf Wunsch 10 € für den ganzen Mietzeitraum.
+
+### Tandemanhänger 2.000 kg mieten
+
+Offener Kasten, gebremst. Zwei Achsen, niedrige Bordwände. Leer wiegt er 600 kg, bleiben 1.400 kg für die Ladung.
+
+| Technische Daten | |
+|---|---|
+| Länge | 3,02 m |
+| Breite | 1,85 m |
+| Bordwand | 0,35 m |
+| Gesamtgewicht | 2.000 kg |
+| Leergewicht | 600 kg |
+| Nutzlast | 1.400 kg |
+| Bremse | gebremst |
+
+| Mietdauer | Preis |
+|---|---|
+| 1 Tag | 35 € |
+| Wochenende (Fr–So) | 70 € |
+| 5 Tage | 120 € |
+| 7 Tage | 150 € |
+| Kaution | 100 € |
+
+### Planenanhänger mieten
+
+Hochplane, 1,80 m hoch. Unter der Plane bleibt die Ladung trocken, auch wenn es auf der A 81 schüttet. Hinten geht die Plane ganz auf.
+
+| Technische Daten | |
+|---|---|
+| Länge | 2,50 m |
+| Breite | 1,20 m |
+| Höhe | 1,80 m |
+| Aufbau | Hochplane |
+| Gesamtgewicht | auf Anfrage |
+
+| Mietdauer | Preis |
+|---|---|
+| 1 Tag | 25 € |
+| Wochenende (Fr–So) | 60 € |
+| 5 Tage | 100 € |
+| 7 Tage | 120 € |
+| Kaution | 100 € |
+
+### Anhänger 750 kg mieten
+
+Der Kleine für den Wertstoffhof. Unser günstigster Anhänger. Klasse B reicht, also der normale Autoführerschein.
+
+| Technische Daten | |
+|---|---|
+| Gesamtgewicht | 750 kg |
+| Führerschein | Klasse B |
+| Maße | auf Anfrage |
+
+| Mietdauer | Preis |
+|---|---|
+| 1 Tag | 20 € |
+| Wochenende (Fr–So) | 50 € |
+| 5 Tage | 80 € |
+| 7 Tage | 100 € |
+| Kaution | 100 € |
+
+## Welcher Anhänger wofür
+
+- Auto oder Minibagger: Autotransporter 2.700 kg
+- Brennholz und Baumaterial: Tandemanhänger 2.000 kg
+- Umzug mit Möbeln und Kartons: Planenanhänger
+- Grünschnitt, Fahrt zum Wertstoffhof: Anhänger 750 kg
+
+## So mieten Sie einen Anhänger
+
+1. Anfragen. Per WhatsApp oder Telefon. Nennen Sie den Anhänger und Ihren Wunschtermin.
+2. Termin festmachen. Wir sagen, ob der Anhänger frei ist, und machen eine Uhrzeit aus.
+3. Abholen. In der Flurstraße 2C. Sie hinterlegen die Kaution und bekommen eine Einweisung am Anhänger.
+4. Zurückbringen. Anhänger abstellen, kurzer Blick drüber, Kaution zurück.
+
+## Bewertungen
+
+5,0 von 5 bei Google, 12 Rezensionen (Stand November 2026).
+
+## Häufige Fragen
+
+### Was kostet es, in Tauberbischofsheim einen Anhänger zu mieten?
+
+Der 750-kg-Anhänger kostet 20 € am Tag, der Planenanhänger 25 €, der Tandemanhänger 35 € und der Autotransporter 50 €. Dazu kommt die Kaution.
+
+### Welchen Führerschein brauche ich für einen Anhänger?
+
+Mit Klasse B dürfen Sie jeden Anhänger bis 750 kg zulässigem Gesamtgewicht ziehen. Schwerere Anhänger gehen mit Klasse B nur, wenn Auto und Anhänger zusammen höchstens 3.500 kg zulässiges Gesamtgewicht haben. Mit B96 sind es 4.250 kg, mit BE dürfen Sie Anhänger bis 3.500 kg ziehen. Was Ihr Auto ziehen darf, steht im Fahrzeugschein unter O.1 und O.2.
+
+### Was kostet ein Anhänger übers Wochenende?
+
+Von Freitag bis Sonntag kostet der 750-kg-Anhänger 50 €, der Planenanhänger 60 € und der Tandemanhänger 70 €. Der Autotransporter kostet 50 € pro Tag.
+
+### Wie hoch ist die Kaution?
+
+100 € je Anhänger, beim Autotransporter 150 €.
+
+### Kann ich ein Auto oder einen Minibagger transportieren?
+
+Dafür ist der Autotransporter da. Die Ladefläche ist 4 Meter lang und 2,20 Meter breit, das zulässige Gesamtgewicht liegt bei 2.700 kg. Aufgefahren wird über Auffahrschienen. Zurrgurte auf Wunsch 10 € für den ganzen Mietzeitraum.
+
+### Wo und wann hole ich den Anhänger ab?
+
+In der Flurstraße 2C in Tauberbischofsheim. Die Uhrzeit machen wir vorher per WhatsApp oder am Telefon aus.
+
+## Kontakt und Anfahrt
+
+Fahrzeugvermietung Bauer
+Flurstraße 2C
+97941 Tauberbischofsheim
+
+Telefon und WhatsApp: 0160 91959496
+
+Abholung und Rückgabe nach Absprache, auch abends und am Wochenende. Aus Lauda-Königshofen, Grünsfeld, Werbach und Külsheim fahren Sie rund eine Viertelstunde in die Flurstraße. Aus Wertheim ist es eine gute halbe Stunde.
+"
+`;
