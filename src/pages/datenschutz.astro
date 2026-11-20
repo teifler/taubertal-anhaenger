@@ -1,23 +1,129 @@
 ---
+import { DEPLOY_TARGET } from 'astro:env/server';
+
 import LegalContact from '../components/LegalContact.astro';
 import LegalPage from '../components/LegalPage.astro';
 import { site } from '../data';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
-// TODO(before launch): add the hosting, WhatsApp and Google Maps sections and delete the placeholder note.
+// The hosting section depends on where this build runs. GitHub's statements were checked on 20.11.2026 in
+// "About GitHub Pages" (section "Data collection") and in the GitHub General Privacy Statement.
+const onGitHubPages = DEPLOY_TARGET === 'github-pages';
+const host = site.hosting;
+const PRIVACY_AS_OF = 'November 2026';
+
+const links = {
+  github: 'https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement',
+  whatsapp: 'https://www.whatsapp.com/legal/privacy-policy-eea',
+  google: 'https://policies.google.com/privacy',
+  authority: 'https://www.baden-wuerttemberg.datenschutz.de/',
+};
 ---
 
 <BaseLayout title={`Datenschutz | ${site.name}`} noindex>
   <LegalPage title="Datenschutz">
-    <p class="placeholder-note">Platzhalter. Es fehlen: Hoster, Hinweis zu WhatsApp und Google Maps.</p>
+    {!onGitHubPages && !host && (
+      <p class="placeholder-note">
+        Noch offen: Hoster der Website. Name, Anschrift und Link zu dessen Datenschutzerklärung in src/data/site.json
+        unter „hosting“ eintragen.
+      </p>
+    )}
+
+    <p>
+      Diese Seite setzt keine Cookies, zählt keine Besucher und lädt keine Inhalte von anderen Anbietern. Schrift und
+      Bilder liegen auf demselben Server wie die Seite. Personenbezogene Daten fallen an zwei Stellen an: beim Hoster,
+      der die Seite ausliefert, und wenn Sie uns anrufen oder schreiben.
+    </p>
 
     <h2>Verantwortlicher</h2>
     <LegalContact />
 
-    <h2>Cookies und Drittanbieter</h2>
+    {onGitHubPages && (
+      <>
+        <h2>Hosting</h2>
+        <p>
+          Die Seite liegt bei GitHub Pages. Anbieter sind die GitHub B.V., Prins Bernhardplein 200, 1097 JB Amsterdam,
+          Niederlande, und die GitHub, Inc., 88 Colin P. Kelly Jr. St., San Francisco, CA 94107, USA.
+        </p>
+        <p>
+          Bei jedem Aufruf erfährt GitHub Ihre IP-Adresse, sonst könnte der Server die Seite nicht schicken. GitHub
+          protokolliert und speichert die IP-Adresse nach eigenen Angaben zu Sicherheitszwecken. Wie lange, gibt GitHub
+          nicht an. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, unser berechtigtes Interesse eine sichere und
+          erreichbare Website.
+        </p>
+        <p>
+          Dabei können Daten in die USA gehen. GitHub, Inc. ist nach dem EU-US Data Privacy Framework zertifiziert. Für
+          solche Unternehmen hat die EU-Kommission ein angemessenes Datenschutzniveau festgestellt (Art. 45 DSGVO). Mehr
+          steht in der <a href={links.github}>Datenschutzerklärung von GitHub</a>.
+        </p>
+      </>
+    )}
+    {!onGitHubPages && host && (
+      <>
+        <h2>Hosting</h2>
+        <p>
+          {`Die Seite liegt bei ${host.name}, ${host.address}. `}
+          Bei jedem Aufruf speichert der Server Zugriffsdaten in Logdateien, in der Regel IP-Adresse, Datum und Uhrzeit,
+          die aufgerufene Adresse, die vorher besuchte Seite und den Browser. Ohne diese Daten kann der Server die Seite
+          nicht ausliefern und Angriffe nicht erkennen. Rechtsgrundlage ist Art. 6 Abs. 1 lit. f DSGVO, unser
+          berechtigtes Interesse eine sichere und erreichbare Website. Mehr steht in der{' '}
+          <a href={host.privacyUrl}>{`Datenschutzerklärung von ${host.name}`}</a>.
+        </p>
+      </>
+    )}
+
+    <h2>Anfragen per Telefon, WhatsApp oder E-Mail</h2>
     <p>
-      Die Seite setzt keine Cookies und lädt keine Schriften oder Skripte von Dritten. WhatsApp und Google Maps sind nur
-      verlinkt, es wird nichts eingebettet.
+      Wenn Sie anrufen oder schreiben, verarbeiten wir, was Sie uns mitteilen: meist Name, Telefonnummer, Wunschtermin
+      und den Anhänger, den Sie mieten möchten. Damit beantworten wir die Anfrage und wickeln die Miete ab.
+      Rechtsgrundlage ist Art. 6 Abs. 1 lit. b DSGVO, weil es um einen Mietvertrag oder seine Anbahnung geht. Bei
+      anderen Anliegen gilt Art. 6 Abs. 1 lit. f DSGVO.
     </p>
+    <p>
+      Wir löschen die Angaben, wenn wir sie nicht mehr brauchen. Rechnungen und andere Unterlagen zur Miete heben wir so
+      lange auf, wie Handels- und Steuerrecht es verlangen.
+    </p>
+
+    <h2>WhatsApp</h2>
+    <p>
+      Die grünen WhatsApp-Schaltflächen sind einfache Links. Solange Sie nicht darauf tippen, baut die Seite keine
+      Verbindung zu WhatsApp auf. Erst danach öffnet sich WhatsApp mit einem vorbereiteten Text.
+    </p>
+    <p>
+      Anbieter in der EU ist die WhatsApp Ireland Limited in Dublin. WhatsApp verarbeitet Ihre Telefonnummer und Daten
+      zu den Nachrichten in eigener Verantwortung, dabei können Daten auch in die USA gehen. Die Einzelheiten stehen in
+      der <a href={links.whatsapp}>Datenschutzrichtlinie von WhatsApp</a>. Wer WhatsApp nicht nutzen möchte, ruft an
+      oder schreibt eine E-Mail.
+    </p>
+
+    <h2>Google Maps und Google-Rezensionen</h2>
+    <p>
+      „Route planen“ und die Links zu den Rezensionen führen zu Google. Die Seite bindet keine Karte ein, Google erfährt
+      also nichts, solange Sie nicht klicken. Nach dem Klick gilt die{' '}
+      <a href={links.google}>Datenschutzerklärung von Google</a>, Anbieter in der EU ist die Google Ireland Limited in
+      Dublin.
+    </p>
+
+    <h2>Ihre Rechte</h2>
+    <p>
+      Sie können Auskunft über die Daten verlangen, die wir über Sie gespeichert haben (Art. 15 DSGVO). Falsche Angaben
+      berichtigen wir (Art. 16). Auf Wunsch löschen wir Ihre Daten oder schränken die Verarbeitung ein (Art. 17 und 18),
+      soweit keine Aufbewahrungspflicht dagegensteht. Daten, die Sie uns selbst gegeben haben, bekommen Sie in einem
+      gängigen Format (Art. 20). Einer Verarbeitung nach Art. 6 Abs. 1 lit. f DSGVO können Sie widersprechen, wenn sich
+      Gründe aus Ihrer besonderen Situation ergeben (Art. 21). Eine kurze Nachricht an die Adresse oben genügt.
+    </p>
+    <p>
+      Beschweren können Sie sich bei jeder Datenschutz-Aufsichtsbehörde (Art. 77 DSGVO). Für uns zuständig ist der
+      Landesbeauftragte für den Datenschutz und die Informationsfreiheit Baden-Württemberg, Heilbronner Straße 35, 70191
+      Stuttgart, <a href={links.authority}>www.baden-wuerttemberg.datenschutz.de</a>.
+    </p>
+
+    <h2>Keine Pflicht, keine automatischen Entscheidungen</h2>
+    <p>
+      Sie müssen uns keine Daten geben. Ohne Namen und Telefonnummer können wir aber keinen Anhänger vermieten.
+      Automatisierte Entscheidungen oder Profiling gibt es nicht.
+    </p>
+
+    <p>{`Stand: ${PRIVACY_AS_OF}`}</p>
   </LegalPage>
 </BaseLayout>

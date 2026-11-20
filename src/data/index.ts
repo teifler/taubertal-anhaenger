@@ -95,6 +95,12 @@ const siteSchema = z.strictObject({
     url: z.url(),
   }),
   profiles: z.strictObject({ kleinanzeigen: z.url() }),
+  /**
+   * Web host of the production site, named in the privacy policy. null until the client has chosen one; the
+   * production build then shows a notice. Assumes a host in the EU: a host elsewhere needs a transfer section
+   * like the GitHub Pages one in datenschutz.astro.
+   */
+  hosting: z.strictObject({ name: z.string().min(1), address: z.string().min(1), privacyUrl: z.url() }).nullable(),
   serviceArea: z.array(z.string().min(1)).min(1),
 });
 

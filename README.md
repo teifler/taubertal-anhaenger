@@ -108,8 +108,8 @@ text endpoints.
 
 ## Status
 
-The site is finished but not live yet. Before launch the client still has to provide the details for the privacy policy
-(still a placeholder) and confirm a few facts. Both legal pages are
+The site is finished but not live yet. Before launch the client still has to choose a web host (the privacy policy names
+it) and confirm a few facts. Both legal pages are
 `noindex` on purpose.
 
 ## Inhalte pflegen (für den Betreiber)
