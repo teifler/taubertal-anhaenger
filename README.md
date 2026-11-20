@@ -102,21 +102,21 @@ text endpoints.
 
 ## Status
 
-The site is finished but not live yet. Before launch the client still has to provide an e-mail address for the
-Impressum and the details for the privacy policy (still a placeholder), and confirm a few facts. Both legal pages are
+The site is finished but not live yet. Before launch the client still has to provide the details for the privacy policy
+(still a placeholder) and confirm a few facts. Both legal pages are
 `noindex` on purpose.
 
 ## Inhalte pflegen (für den Betreiber)
 
-| Was                                                                           | Datei                                                |
-| ----------------------------------------------------------------------------- | ---------------------------------------------------- |
-| Anhänger, technische Daten, Preise, Kaution                                   | `src/data/trailers.json`                             |
-| Name, Inhaber, Adresse, Telefon, E-Mail, USt-IdNr., Title, Description, Texte | `src/data/site.json`                                 |
-| Fragen und Antworten                                                          | `src/data/faq.json`                                  |
-| Google-Zitate                                                                 | `src/data/reviews.json`                              |
-| Ablauf, „Welcher Anhänger wofür“                                              | `src/data/steps.json`, `src/data/use-cases.json`     |
-| Fotos                                                                         | `src/assets/images/`, eingetragen in `trailers.json` |
-| Domain                                                                        | `astro.config.mjs` (`site`) und `public/.htaccess`   |
+| Was                                                                                    | Datei                                                |
+| -------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| Anhänger, technische Daten, Preise, Kaution                                            | `src/data/trailers.json`                             |
+| Name, Inhaber, Adresse, Telefon, E-Mail, USt-IdNr., W-IdNr., Title, Description, Texte | `src/data/site.json`                                 |
+| Fragen und Antworten                                                                   | `src/data/faq.json`                                  |
+| Google-Zitate                                                                          | `src/data/reviews.json`                              |
+| Ablauf, „Welcher Anhänger wofür“                                                       | `src/data/steps.json`, `src/data/use-cases.json`     |
+| Fotos                                                                                  | `src/assets/images/`, eingetragen in `trailers.json` |
+| Domain                                                                                 | `astro.config.mjs` (`site`) und `public/.htaccess`   |
 
 Preise nur in `trailers.json` ändern. In anderen Texten stehen Platzhalter, die beim Build ersetzt werden:
 `{day:<id>}`, `{weekend:<id>}`, `{fiveDays:<id>}`, `{week:<id>}`, `{deposit:<id>}`, `{note:<id>}`, `{minPrice}`,

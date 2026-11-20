@@ -14,8 +14,9 @@
     "e164": "+4916091959496",
     "display": "0160 91959496"
   },
-  "email": null,
+  "email": "fahrzeugverleih-bauer@web.de",
   "vatId": null,
+  "businessId": null,
   "geo": {
     "lat": 49.60055,
     "lng": 9.68964

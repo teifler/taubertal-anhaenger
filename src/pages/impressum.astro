@@ -16,10 +16,14 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <h2>Angaben gemäß § 5 DDG</h2>
     <LegalContact />
 
-    {site.vatId && (
+    {(site.vatId || site.businessId) && (
       <>
-        <h2>Umsatzsteuer-ID</h2>
-        <p>{`Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: ${site.vatId}`}</p>
+        <h2>Steuerliche Angaben</h2>
+        <p>
+          {site.vatId && `Umsatzsteuer-Identifikationsnummer gemäß § 27a Umsatzsteuergesetz: ${site.vatId}`}
+          {site.vatId && site.businessId && <br />}
+          {site.businessId && `Wirtschafts-Identifikationsnummer gemäß § 139c Abgabenordnung: ${site.businessId}`}
+        </p>
       </>
     )}
 

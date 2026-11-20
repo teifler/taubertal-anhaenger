@@ -70,6 +70,11 @@ const siteSchema = z.strictObject({
     .string()
     .regex(/^DE\d{9}$/, 'DE followed by 9 digits')
     .nullable(),
+  /** Wirtschafts-Identifikationsnummer (W-IdNr., § 139c AO). null = not assigned yet; then the line is left out. */
+  businessId: z
+    .string()
+    .regex(/^DE\d{9}-\d{5}$/, 'DE, 9 digits, a dash and 5 digits, e.g. DE123456789-00001')
+    .nullable(),
   geo: z.strictObject({ lat: z.number().min(-90).max(90), lng: z.number().min(-180).max(180) }),
   seo: z.strictObject({
     title: z.string().min(1),
