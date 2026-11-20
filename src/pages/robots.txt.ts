@@ -1,6 +1,6 @@
 import type { APIRoute } from 'astro';
 
-import { requireSite } from '../lib/site-url';
+import { siteRoot } from '../lib/site-url';
 
 /** Listed explicitly so the intent is visible; the `*` rule already allows them. */
 const AI_CRAWLERS = [
@@ -24,7 +24,7 @@ export const GET: APIRoute = ({ site }) => {
     ...AI_CRAWLERS.map((bot) => `User-agent: ${bot}`),
     'Allow: /',
     '',
-    `Sitemap: ${new URL('/sitemap.xml', requireSite(site)).href}`,
+    `Sitemap: ${new URL('sitemap.xml', siteRoot(site)).href}`,
     '',
   ].join('\n');
   return new Response(text, { headers: { 'Content-Type': 'text/plain; charset=utf-8' } });

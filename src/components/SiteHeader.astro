@@ -1,20 +1,21 @@
 ---
 import { site } from '../data';
 import { telUrl } from '../lib/links';
+import { withBase } from '../lib/site-url';
 import TrailerLogo from './icons/TrailerLogo.astro';
 
 const navItems = [
-  { href: '/#anhaenger', label: 'Anhänger' },
-  { href: '/#preise', label: 'Preise' },
-  { href: '/#ablauf', label: 'Ablauf' },
-  { href: '/#stimmen', label: 'Bewertungen' },
-  { href: '/#kontakt', label: 'Kontakt' },
+  { href: withBase('/#anhaenger'), label: 'Anhänger' },
+  { href: withBase('/#preise'), label: 'Preise' },
+  { href: withBase('/#ablauf'), label: 'Ablauf' },
+  { href: withBase('/#stimmen'), label: 'Bewertungen' },
+  { href: withBase('/#kontakt'), label: 'Kontakt' },
 ];
 ---
 
 <header class="site-header">
   <div class="container site-header__inner">
-    <a class="brand" href="/#start">
+    <a class="brand" href={withBase('/#start')}>
       <TrailerLogo />
       <span>
         <span class="brand__name">{site.name}</span>

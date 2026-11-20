@@ -5,6 +5,9 @@ trailers, prices, FAQ and contact via WhatsApp or phone. Static, fast, no cookie
 
 Built as a freelance project for a real client, so the page content is German; code and documentation are English.
 
+**Live preview:** [teifler.github.io/taubertal-anhaenger](https://teifler.github.io/taubertal-anhaenger/), deployed from
+`main` by CI after all checks pass. The preview is `noindex`; the production site will run on its own domain.
+
 | Desktop                                               | Mobile                                                                         |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
 | ![Start page on desktop](docs/screenshot-desktop.png) | <img src="docs/screenshot-mobile.png" alt="Start page on a phone" width="300"> |
@@ -97,6 +100,9 @@ text endpoints.
 - **Content date instead of build date** for `dateModified` and sitemap `lastmod`, so rebuilding does not claim the
   content changed and builds are reproducible.
 - **No `AggregateRating` markup.** Google does not show review stars a business publishes about itself.
+- **One codebase, two deploy targets.** Production builds for the real domain; the GitHub Pages preview sets
+  `DEPLOY_TARGET=github-pages` and serves the same build from `/<repo>/`. Internal links go through `withBase()`,
+  a unit test rejects root-relative links, and the preview is `noindex` so it never competes with the real domain.
 - **WhatsApp and phone instead of a booking form.** No backend, no personal data stored, and it matches how the
   business already works.
 

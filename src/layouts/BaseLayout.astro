@@ -1,13 +1,15 @@
 ---
 import '../styles/global.css';
 
+import { DEPLOY_TARGET } from 'astro:env/server';
+
 import MobileContactBar from '../components/MobileContactBar.astro';
 import RatingBar from '../components/RatingBar.astro';
 import SiteFooter from '../components/SiteFooter.astro';
 import SiteHeader from '../components/SiteHeader.astro';
 import { site } from '../data';
 import { serializeJsonLd } from '../lib/structured-data';
-import { requireSite } from '../lib/site-url';
+import { siteRoot, withBase } from '../lib/site-url';
 
 interface Props {
   title: string;
@@ -20,10 +22,12 @@ interface Props {
   isHome?: boolean;
 }
 
-const { title, description, noindex = false, structuredData, isHome = false } = Astro.props;
-const siteUrl = requireSite(Astro.site);
-const canonical = new URL(Astro.url.pathname, siteUrl).href;
-const ogImage = new URL('/og-bild.jpg', siteUrl).href;
+const { title, description, structuredData, isHome = false } = Astro.props;
+// The GitHub Pages preview is never indexed, so it cannot compete with the real domain.
+const noindex = Astro.props.noindex === true || DEPLOY_TARGET === 'github-pages';
+const root = siteRoot(Astro.site);
+const canonical = new URL(Astro.url.pathname, root).href;
+const ogImage = new URL('og-bild.jpg', root).href;
 ---
 
 <!doctype html>
@@ -37,9 +41,15 @@ const ogImage = new URL('/og-bild.jpg', siteUrl).href;
     <meta name="robots" content={noindex ? 'noindex' : 'index, follow, max-image-preview:large'} />
     <meta name="format-detection" content="telephone=no" />
     <meta name="theme-color" content="#F0FDF4" />
-    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
-    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
-    <link rel="preload" href="/fonts/inter-latin-wght-normal.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="icon" href={withBase('/favicon.svg')} type="image/svg+xml" />
+    <link rel="apple-touch-icon" href={withBase('/apple-touch-icon.png')} />
+    <link
+      rel="preload"
+      href={withBase('/fonts/inter-latin-wght-normal.woff2')}
+      as="font"
+      type="font/woff2"
+      crossorigin
+    />
     {isHome && (
       <>
         <meta name="geo.region" content={`${site.address.country}-${site.address.region}`} />
@@ -59,7 +69,7 @@ const ogImage = new URL('/og-bild.jpg', siteUrl).href;
         <link
           rel="alternate"
           type="text/markdown"
-          href="/index.html.md"
+          href={withBase('/index.html.md')}
           title="Seite als Markdown für KI-Assistenten"
         />
       </>

@@ -9,7 +9,7 @@ import { origin } from './site-url';
  * trailer, and FAQPage. Deliberately without AggregateRating: Google ignores self-served review
  * stars for LocalBusiness.
  *
- * @param siteUrl  `Astro.site`
+ * @param siteUrl  site root including `base` (see `siteRoot`)
  * @param imageUrls absolute URL of the first image per trailer id
  */
 export function buildStructuredData(siteUrl: URL, imageUrls: Readonly<Record<string, string>>) {
