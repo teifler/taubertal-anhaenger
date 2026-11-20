@@ -45,5 +45,6 @@
   "profiles": {
     "kleinanzeigen": "https://www.kleinanzeigen.de/s-bestandsliste.html?userId=137386711"
   },
+  "hosting": null,
   "serviceArea": ["Tauberbischofsheim", "Lauda-Königshofen", "Grünsfeld", "Werbach", "Külsheim", "Wertheim"]
 }
