@@ -1,5 +1,6 @@
 ---
 import { site, trailers } from '../data';
+import { withBase } from '../lib/site-url';
 
 const { street, postalCode, city } = site.address;
 ---
@@ -8,13 +9,13 @@ const { street, postalCode, city } = site.address;
   <div class="container site-footer__inner">
     <nav class="site-footer__trailers" aria-label="Anhänger mieten">
       {trailers.map((trailer) => (
-        <a href={`/#${trailer.id}`}>{trailer.name} mieten</a>
+        <a href={withBase(`/#${trailer.id}`)}>{trailer.name} mieten</a>
       ))}
     </nav>
     <span>{`${site.company}, Anhängerverleih und Anhängervermietung, ${street}, ${postalCode} ${city}, Telefon ${site.phone.display}`}</span>
     <span class="site-footer__legal">
-      <a href="/impressum/">Impressum</a>
-      <a href="/datenschutz/">Datenschutz</a>
+      <a href={withBase('/impressum/')}>Impressum</a>
+      <a href={withBase('/datenschutz/')}>Datenschutz</a>
     </span>
   </div>
 </footer>

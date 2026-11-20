@@ -2,12 +2,13 @@
 import { site } from '../data';
 import BaseLayout from '../layouts/BaseLayout.astro';
 import LegalPage from '../components/LegalPage.astro';
+import { withBase } from '../lib/site-url';
 ---
 
 <BaseLayout title={`Seite nicht gefunden | ${site.name}`} noindex>
   <LegalPage title="Seite nicht gefunden">
     <p>
-      Diese Adresse gibt es nicht. Alle Anhänger und Preise stehen auf der <a href="/">Startseite</a>.
+      Diese Adresse gibt es nicht. Alle Anhänger und Preise stehen auf der <a href={withBase('/')}>Startseite</a>.
     </p>
   </LegalPage>
 </BaseLayout>

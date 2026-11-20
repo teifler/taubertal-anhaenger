@@ -1,12 +1,13 @@
 ---
 import { reviews, site } from '../data';
 import { formatRating } from '../lib/format';
+import { withBase } from '../lib/site-url';
 
 const topQuote = reviews.find((review) => review.showInTopBar);
 ---
 
 <aside class="rating-bar" aria-label="Bewertung bei Google">
-  <a href="/#stimmen">
+  <a href={withBase('/#stimmen')}>
     <span class="stars" aria-hidden="true">
       ★★★★★
     </span>
