@@ -8,8 +8,8 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 
 // The hosting section depends on where this build runs. GitHub's statements were checked on 20.11.2026 in
 // "About GitHub Pages" (section "Data collection") and in the GitHub General Privacy Statement.
-const onGitHubPages = DEPLOY_TARGET === 'github-pages';
-const host = site.hosting;
+const onGitHubPages = DEPLOY_TARGET === 'github-pages' || site.hosting === 'github-pages';
+const host = typeof site.hosting === 'object' ? site.hosting : null;
 const PRIVACY_AS_OF = 'November 2026';
 
 const links = {
