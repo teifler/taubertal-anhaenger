@@ -4,7 +4,7 @@
  * The owner's name comes first: in a sole proprietorship the person, not the trading name, is the legal entity.
  */
 import { site } from '../data';
-import { telUrl } from '../lib/links';
+import { telUrl, whatsappChatUrl } from '../lib/links';
 
 const { street, district, postalCode, city } = site.address;
 ---
@@ -20,6 +20,8 @@ const { street, district, postalCode, city } = site.address;
 </p>
 <p>
   Telefon: <a href={telUrl}>{site.phone.display}</a>
+  <br />
+  WhatsApp: <a href={whatsappChatUrl}>{site.phone.display}</a>
   {site.email && (
     <>
       <br />
