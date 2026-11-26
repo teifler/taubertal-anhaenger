@@ -5,8 +5,8 @@ trailers, prices, FAQ and contact via WhatsApp or phone. Static, fast, no cookie
 
 Built as a freelance project for a real client, so the page content is German; code and documentation are English.
 
-**Live preview:** [teifler.github.io/taubertal-anhaenger](https://teifler.github.io/taubertal-anhaenger/), deployed from
-`main` by CI after all checks pass. The preview is `noindex`; the production site will run on its own domain.
+**Live:** [www.taubertal-anhaenger.de](https://www.taubertal-anhaenger.de/), hosted on GitHub Pages and deployed from
+`main` by CI after all checks pass.
 
 | Desktop                                               | Mobile                                                                         |
 | ----------------------------------------------------- | ------------------------------------------------------------------------------ |
@@ -100,17 +100,17 @@ text endpoints.
 - **Content date instead of build date** for `dateModified` and sitemap `lastmod`, so rebuilding does not claim the
   content changed and builds are reproducible.
 - **No `AggregateRating` markup.** Google does not show review stars a business publishes about itself.
-- **One codebase, two deploy targets.** Production builds for the real domain; the GitHub Pages preview sets
-  `DEPLOY_TARGET=github-pages` and serves the same build from `/<repo>/`. Internal links go through `withBase()`,
-  a unit test rejects root-relative links, and the preview is `noindex` so it never competes with the real domain.
+- **GitHub Pages with a custom domain.** Free, HTTPS by default, deployed by CI. The trade-off: no custom HTTP
+  headers, so `public/.htaccess` only applies if the site moves to Apache; the CSP still works because it is a
+  `<meta>` tag. A sub-path build (`DEPLOY_TARGET=github-pages`, links through `withBase()`, `noindex`) remains
+  available for previews, and a unit test rejects root-relative links.
 - **WhatsApp and phone instead of a booking form.** No backend, no personal data stored, and it matches how the
   business already works.
 
 ## Status
 
-The site is finished but not live yet. Before launch the client still has to choose a web host (the privacy policy names
-it) and confirm a few facts. Both legal pages are
-`noindex` on purpose.
+The site is live. The client still has to confirm a few facts (see the open points). Both legal pages are `noindex`
+on purpose.
 
 ## Inhalte pflegen (für den Betreiber)
 
