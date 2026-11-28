@@ -34,6 +34,7 @@
     "pickup": "Abholung und Rückgabe nach Absprache, auch abends und am Wochenende.",
     "travelTimes": "Aus Lauda-Königshofen, Grünsfeld, Werbach und Külsheim fahren Sie rund eine Viertelstunde in die Flurstraße. Aus Wertheim ist es eine gute halbe Stunde."
   },
+  "vatExempt": true,
   "pricesAsOf": "November 2026",
   "lastUpdated": "2026-11-18",
   "rating": {

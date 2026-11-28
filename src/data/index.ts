@@ -86,6 +86,8 @@ const siteSchema = z.strictObject({
   }),
   copy: z.strictObject({ lead: z.string().min(1), pickup: z.string().min(1), travelTimes: z.string().min(1) }),
   pricesAsOf: z.string().min(1),
+  /** Kleinunternehmer nach § 19 UStG: prices carry no VAT. Drives the price note required by § 6 PAngV. */
+  vatExempt: z.boolean(),
   /** ISO date of the last content change. Drives `dateModified` and the sitemap `lastmod`. */
   lastUpdated: z.iso.date(),
   rating: z.strictObject({

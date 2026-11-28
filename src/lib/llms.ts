@@ -4,7 +4,7 @@
  */
 import { faq, site, steps, trailers, useCases, type Trailer } from '../data';
 import { capitalize, formatEuro, formatRating, numberWord } from './format';
-import { dayPriceRange, DEPOSIT_LABEL, hasLongTermPrices, ON_REQUEST, PRICE_PERIODS } from './pricing';
+import { dayPriceRange, DEPOSIT_LABEL, hasLongTermPrices, ON_REQUEST, PRICE_PERIODS, priceTaxNote } from './pricing';
 import { origin } from './site-url';
 
 const { street, postalCode, city } = site.address;
@@ -25,7 +25,7 @@ export function buildLlmsTxt(siteUrl: URL): string {
     '',
     `> Anhängerverleih in ${city}, Baden-Württemberg. ${capitalize(numberWord(trailers.length))} PKW-Anhänger von 750 bis 2.700 kg zulässigem Gesamtgewicht, ab ${formatEuro(dayPriceRange(trailers).min)} pro Tag. Anfrage per WhatsApp oder Telefon unter ${site.phone.display}, Abholung in der ${street}, ${postalCode} ${city}.`,
     '',
-    `Stand aller Angaben: ${site.pricesAsOf}. Preise in Euro, Miete pro Tag, Wochenende heißt Freitag bis Sonntag. Online buchen geht nicht, der Termin wird per WhatsApp oder am Telefon ausgemacht. Wo „${ON_REQUEST}“ steht, liegt keine Angabe vor.`,
+    `Stand aller Angaben: ${site.pricesAsOf}. Preise in Euro, Miete pro Tag, Wochenende heißt Freitag bis Sonntag. ${priceTaxNote(site.vatExempt)} Online buchen geht nicht, der Termin wird per WhatsApp oder am Telefon ausgemacht. Wo „${ON_REQUEST}“ steht, liegt keine Angabe vor.`,
     '',
     'Anhänger und Preise:',
     '',
@@ -75,7 +75,7 @@ export function buildPageMarkdown(): string {
     '',
     `${site.copy.lead} Anfrage per WhatsApp oder Telefon: ${site.phone.display}.`,
     '',
-    `Stand: ${site.pricesAsOf}.`,
+    `Stand: ${site.pricesAsOf}. ${priceTaxNote(site.vatExempt)}`,
     '',
     `## ${capitalize(numberWord(trailers.length))} PKW-Anhänger zum Mieten`,
     '',

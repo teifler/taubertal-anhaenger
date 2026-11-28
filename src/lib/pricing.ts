@@ -15,6 +15,18 @@ export const PRICE_PERIODS: readonly { key: PricePeriod; label: string; shortLab
 export const DEPOSIT_LABEL = 'Kaution';
 export const ON_REQUEST = 'auf Anfrage';
 
+/**
+ * Price note required for consumer prices (§ 3 and § 6 Abs. 1 PAngV). A Kleinunternehmer charges no VAT, so the
+ * prices can't "include" it; the note says so instead.
+ */
+export function priceTaxNote(vatExempt: boolean, form: 'long' | 'short' = 'long'): string {
+  if (form === 'short')
+    return vatExempt ? 'Endpreise, ohne Umsatzsteuer nach § 19 UStG' : 'Endpreise inkl. Umsatzsteuer';
+  return vatExempt
+    ? 'Alle Preise sind Endpreise. Nach § 19 UStG wird keine Umsatzsteuer berechnet (Kleinunternehmerregelung).'
+    : 'Alle Preise sind Endpreise inklusive Umsatzsteuer.';
+}
+
 /** True if at least one price beyond the daily rate is known. */
 export function hasLongTermPrices(trailer: Trailer): boolean {
   return PRICE_PERIODS.some(({ key }) => key !== 'day' && trailer.prices[key] !== null);

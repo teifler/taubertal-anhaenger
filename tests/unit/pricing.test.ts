@@ -1,6 +1,6 @@
 import { describe, expect, it } from 'vitest';
 
-import { dayPriceRange, hasLongTermPrices, PRICE_PERIODS } from '../../src/lib/pricing';
+import { dayPriceRange, hasLongTermPrices, PRICE_PERIODS, priceTaxNote } from '../../src/lib/pricing';
 import { makeTrailer } from './fixtures';
 
 describe('hasLongTermPrices', () => {
@@ -33,5 +33,18 @@ describe('PRICE_PERIODS', () => {
     const keys = PRICE_PERIODS.map((p) => p.key);
     expect(keys[0]).toBe('day');
     expect(new Set(keys)).toEqual(new Set(Object.keys(makeTrailer().prices)));
+  });
+});
+
+describe('priceTaxNote', () => {
+  it('says that a Kleinunternehmer charges no VAT', () => {
+    expect(priceTaxNote(true)).toContain('§ 19 UStG');
+    expect(priceTaxNote(true)).toContain('Endpreise');
+    expect(priceTaxNote(true, 'short')).toBe('Endpreise, ohne Umsatzsteuer nach § 19 UStG');
+  });
+
+  it('says that prices include VAT otherwise (§ 6 Abs. 1 Nr. 1 PAngV)', () => {
+    expect(priceTaxNote(false)).toBe('Alle Preise sind Endpreise inklusive Umsatzsteuer.');
+    expect(priceTaxNote(false, 'short')).toBe('Endpreise inkl. Umsatzsteuer');
   });
 });

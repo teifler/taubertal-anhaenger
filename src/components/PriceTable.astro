@@ -1,11 +1,12 @@
 ---
 import { site, trailers } from '../data';
 import { formatEuro } from '../lib/format';
-import { DEPOSIT_LABEL, hasLongTermPrices, ON_REQUEST, PRICE_PERIODS } from '../lib/pricing';
+import { DEPOSIT_LABEL, hasLongTermPrices, ON_REQUEST, PRICE_PERIODS, priceTaxNote } from '../lib/pricing';
 
 const rows = [...trailers].sort((a, b) => a.prices.day - b.prices.day);
 const tableNote = [
   ...trailers.filter((t) => t.note).map((t) => `${t.shortName}: ${t.note}`),
+  priceTaxNote(site.vatExempt),
   `Stand der Preise: ${site.pricesAsOf}.`,
 ].join(' ');
 const longTermColumns = PRICE_PERIODS.length - 1;

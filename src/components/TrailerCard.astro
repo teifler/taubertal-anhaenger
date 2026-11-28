@@ -1,8 +1,9 @@
 ---
 import type { Trailer } from '../data';
 import { formatEuro } from '../lib/format';
+import { site } from '../data';
 import { whatsappUrl } from '../lib/links';
-import { DEPOSIT_LABEL, ON_REQUEST, PRICE_PERIODS } from '../lib/pricing';
+import { DEPOSIT_LABEL, ON_REQUEST, PRICE_PERIODS, priceTaxNote } from '../lib/pricing';
 import WhatsAppIcon from './icons/WhatsAppIcon.astro';
 import PhotoGallery from './PhotoGallery.astro';
 
@@ -55,6 +56,7 @@ const priceRows = [
             </div>
           ))}
         </dl>
+        <p class="price-tax-note">{priceTaxNote(site.vatExempt, 'short')}</p>
       </div>
       <p class="trailer-card__note">{trailer.note}</p>
       <a class="btn btn--primary" href={whatsappUrl(trailer.inquiryObject)}>
@@ -131,6 +133,12 @@ const priceRows = [
   }
 
   /* The daily rate is the number people compare, so it gets the highlight. */
+  .price-tax-note {
+    margin-top: 8px;
+    color: var(--color-muted);
+    font-size: 0.85rem;
+  }
+
   .price-list > div:first-child {
     background: var(--color-tint);
   }
