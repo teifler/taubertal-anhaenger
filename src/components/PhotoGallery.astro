@@ -8,7 +8,7 @@ interface Props {
   images: Trailer['images'];
   /** Accessible name of the scroll region, e.g. "Fotos Autotransporter". */
   label: string;
-  /** Drawing instead of a photo: shown uncropped with a "Symbolbild" badge. */
+  /** Drawing instead of a photo: shown uncropped with a "Zeichnung" badge. */
   isIllustration: boolean;
 }
 
@@ -31,7 +31,7 @@ const hasNavigation = images.length > 1;
     ))}
   </div>
   {isIllustration ? (
-    <span class="gallery__badge">Symbolbild</span>
+    <span class="gallery__badge">Zeichnung</span>
   ) : (
     <span class="gallery__counter">{images.length} Fotos, wischen</span>
   )}

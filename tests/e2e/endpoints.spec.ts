@@ -16,7 +16,7 @@ test('sitemap.xml lists only the start page, with a fixed lastmod', async ({ req
   expect(body.match(/<loc>/g)).toHaveLength(1);
   expect(body).toMatch(/<lastmod>\d{4}-\d{2}-\d{2}<\/lastmod>/);
   expect(body).not.toContain('impressum');
-  expect(body).not.toContain('symbolbild');
+  expect(body).not.toContain('750kg-zeichnung');
 });
 
 test('llms.txt and the Markdown version are served as text', async ({ request }) => {

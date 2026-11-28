@@ -35,9 +35,9 @@ test.describe('photo gallery', () => {
     await expect(page.locator('#autotransporter .gallery__counter')).toHaveText('2 / 6');
   });
 
-  test('marks the drawing as "Symbolbild" and has no navigation for a single image', async ({ page }) => {
+  test('marks the drawing as "Zeichnung" and has no navigation for a single image', async ({ page }) => {
     const gallery = page.locator('#anhaenger-750-kg [data-gallery]');
-    await expect(gallery.getByText('Symbolbild')).toBeVisible();
+    await expect(gallery.getByText('Zeichnung', { exact: true })).toBeVisible();
     await expect(gallery.getByRole('button')).toHaveCount(0);
   });
 });

@@ -32,6 +32,14 @@ const { title } = Astro.props;
     margin-bottom: 14px;
   }
 
+  /* Art. 21 Abs. 4 DSGVO: the right to object must stand out from the other information. */
+  .legal :global(.legal-highlight) {
+    padding: 14px 16px;
+    border-left: 4px solid var(--color-brand, #15803d);
+    background: #f0fdf4;
+    border-radius: 6px;
+  }
+
   .legal :global(.placeholder-note) {
     padding: 14px 16px;
     background: #fef3c7;
