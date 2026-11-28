@@ -107,6 +107,11 @@ text endpoints.
 - **WhatsApp and phone instead of a booking form.** No backend, no personal data stored, and it matches how the
   business already works.
 
+## Deployment
+
+Every push to `main` goes through CI and, if all checks pass, deploys to GitHub Pages under the custom domain. DNS
+records, how to check them and what to do when the site doesn't load are in [docs/deployment.md](docs/deployment.md).
+
 ## Status
 
 The site is live. The client still has to confirm a few facts (see the open points). Both legal pages are `noindex`
@@ -122,12 +127,13 @@ on purpose.
 | Google-Zitate                                                                          | `src/data/reviews.json`                              |
 | Ablauf, „Welcher Anhänger wofür“                                                       | `src/data/steps.json`, `src/data/use-cases.json`     |
 | Fotos                                                                                  | `src/assets/images/`, eingetragen in `trailers.json` |
-| Domain                                                                                 | `astro.config.mjs` (`site`) und `public/.htaccess`   |
+| Domain                                                                                 | `astro.config.mjs` (`site`), DNS bei netcup          |
 
 Preise nur in `trailers.json` ändern. In anderen Texten stehen Platzhalter, die beim Build ersetzt werden:
 `{day:<id>}`, `{weekend:<id>}`, `{fiveDays:<id>}`, `{week:<id>}`, `{deposit:<id>}`, `{note:<id>}`, `{minPrice}`,
 `{phone}`, `{street}`, `{city}`. Ein Tippfehler darin bricht den Build mit einer klaren Meldung ab.
-Danach `npm run validate` und den Inhalt von `dist/` hochladen. Die `.htaccess` gilt nur auf Apache-Servern.
+Danach `npm run validate` und auf `main` pushen. Die CI prüft alles und veröffentlicht die Seite nach etwa drei
+Minuten. DNS, Hosting und Fehlersuche stehen in [docs/deployment.md](docs/deployment.md).
 
 ## Content rights
 
